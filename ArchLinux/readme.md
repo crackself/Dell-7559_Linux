@@ -76,5 +76,6 @@ Sun Mar 10 18:39:30 2019
 ```
 ```
 $ optirun glxspheres64
-https://github.com/crackself/Dell-7559_Linux/blob/master/ArchLinux/Screenshot.png
 ```
+![test](https://github.com/crackself/Dell-7559_Linux/blob/master/ArchLinux/Screenshot.png)
+
