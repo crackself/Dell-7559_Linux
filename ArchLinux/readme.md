@@ -39,7 +39,7 @@ then,
 >> https://wiki.archlinux.org/index.php/Bumblebee
 >> https://wiki.archlinux.org/index.php/NVIDIA_Optimus
 ```
-sudo pacman -S bumblebee bbswitch nvidia mesa-demos virtualgl
+sudo pacman -S bumblebee nvidia mesa mesa-demos virtualgl
 sudo gpasswd -a username bumblebee    //把username换成自己的用户名
 ```
 ### Know your 3D Graphics
