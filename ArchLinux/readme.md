@@ -1,4 +1,5 @@
-### custome kernel model blacklist: for disalbe watchdog and load custom broadcom wifi driver for DW1560(xx:43b1)
+## Custome kernel model blacklist: 
+### Disalbe watchdog and load custom broadcom wifi driver for DW1560(xx:43b1)
 
 for WD1560(Broadcom 4352Z, id= 14e4:43b1), need install `broadcom-wl`--the limited driver from broacom
 then, diable other conflict kernel drivers.
@@ -75,5 +76,5 @@ Sun Mar 10 18:39:30 2019
 ```
 ```
 $ optirun glxspheres64
-
+https://github.com/crackself/Dell-7559_Linux/blob/master/ArchLinux/Screenshot.png
 ```
