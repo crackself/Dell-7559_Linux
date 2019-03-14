@@ -59,9 +59,15 @@ LINGUAS="en_US zh_CN en zh"
 
 # Else
 VIDEO_CARDS="intel i965 nvidia"
+GRUB_PLATFORMS="efi-64"
 
 QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
 QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
+```
+### install GRUB UEFI bootloader
+#### need to mount EFI partiton on `/boot/efi`
+```
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
 ```
 
 >> https://blog.yangmame.org/Gentoo%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html
