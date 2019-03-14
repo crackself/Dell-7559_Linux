@@ -28,20 +28,22 @@ auto-sync = yes
 ```
 #### etc/portage/make.conf
 ```
+[archlinuxcn]
+#The Chinese Arch Linux communities packages.
+SigLevel = Optional TrustAll
+Server   = http://repo.archlinuxcn.org/$arch
+
+
+
 # GCC
 CFLAGS="-march=skylake -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
-CHOST="x86_64-pc-linux-gnu"
 CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
 MAKEOPTS="-j5"
 
 # USE
-SUPPORT="pulseaudio X aac acpi alsa ao bash-completion bluetooth bzip2 cdr cjk cups curl dts dvd dbus debug encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python qt5 raw sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
-wifi wmf zip zlib zsh-completion chromium"
-FUCK="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules"
-ELSE="client icu sudo python"
-
-USE="${SUPPORT} ${DESKTOP} ${FUCK} ${ELSE}"
+USE="X aac acpi alsa ao bash_completion bluetooth bzip2 chromium cdr cjk cups curl dts dvd encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k kde lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python raw sudo sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
+wifi wmf zip zlib"
 
 # Portage
 PORTDIR="/usr/portage"
@@ -50,7 +52,6 @@ PKGDIR="${PORTDIR}/packages"
 # GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo/"
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
 
-ACCEPT_KEYWORDS="~amd64"
 ACCEPT_LICENSE="*"
 
 # Language
@@ -63,6 +64,10 @@ GRUB_PLATFORMS="efi-64"
 
 QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
 QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
+LC_MESSAGES=C
 ```
 ### install GRUB UEFI bootloader
 #### need to mount EFI partiton on `/boot/efi`
