@@ -43,6 +43,21 @@ Server   = http://repo.archlinuxcn.org/$arch
 then,
 `pacman -Syu yaourt`
 
+## 安装蓝牙及蓝牙音频
+```
+pacman -S bluez blueman pulseaudio-bluetooth
+```
+#### BCM94352Z专用驱动
+```
+yaourt -S bcm20702a1-firmware
+systemctl enable bluetooth.service
+```
+## xfce主题美化
+```
+yaourt -S gtk-theme-arc-git   # 窗口主题
+pacman -S papirus-icon-theme  # 图标主题
+```
+
 ## 安装 Bumblebee及Nvidia专有驱动
 >> https://wiki.archlinux.org/index.php/Bumblebee
 >> https://wiki.archlinux.org/index.php/NVIDIA_Optimus
