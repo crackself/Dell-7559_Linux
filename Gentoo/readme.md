@@ -37,8 +37,12 @@ CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 s
 MAKEOPTS="-j5"
 
 # USE
-USE="X kde aac acpi alsa ao bash_completion bluetooth bzip2 chromium cdr cjk cups curl dts dvd encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python raw sudo sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
+# set your desktop in DESKTOP , etc kde or gnome
+NEED="X aac acpi alsa ao bash_completion bluetooth bzip2 chromium cdr cjk cups curl dts dvd encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python raw sudo sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
 wifi wmf zip zlib"
+REMOVE="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
+DESKTOP="" 
+USE="${NEED} ${REMOVE} ${DESKTOP}"
 
 # Portage
 PORTDIR="/usr/portage"
