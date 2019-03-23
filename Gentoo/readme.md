@@ -26,8 +26,10 @@ sync-type = rsync
 sync-uri = rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/
 auto-sync = yes
 ```
-#### etc/portage/make.conf
+#### /etc/portage/make.conf
 ```
+nano /mnt/gentoo/portage/make.conf
+
 # GCC
 CFLAGS="-march=skylake -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
