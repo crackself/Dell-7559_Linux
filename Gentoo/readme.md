@@ -115,6 +115,8 @@ nano -w /etc/fstab
 ### install GRUB UEFI bootloader
 #### need to mount EFI partiton on `/boot/efi`
 ```
+emerge --ask --verbose sys-boot/grub:2
+
 grub-install --target=x86_64-efi --efi-directory=/boot/efi
 ```
 ### exit and umount
