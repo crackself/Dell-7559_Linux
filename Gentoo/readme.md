@@ -28,13 +28,6 @@ auto-sync = yes
 ```
 #### etc/portage/make.conf
 ```
-[archlinuxcn]
-#The Chinese Arch Linux communities packages.
-SigLevel = Optional TrustAll
-Server   = http://repo.archlinuxcn.org/$arch
-
-
-
 # GCC
 CFLAGS="-march=skylake -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
@@ -69,10 +62,65 @@ QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
 ```
+### 进入新环境
+
+```
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --make-rslave /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --make-rslave /mnt/gentoo/dev
+```
+```
+
+chroot /mnt/gentoo /bin/bash
+ource /etc/profile
+export PS1="(chroot) ${PS1}"
+```
+### config and build system
+```
+emerge-webrsync
+eselect profile list
+eselect profile set X
+
+emerge --ask --verbose --update --deep --newuse @world
+- ebuild source location is usr/portage/distfiles
+echo "Asia/Shanghai" > /etc/timezone
+emerge --config sys-libs/timezone-data
+
+nano -w /etc/locale.gen
+locale-gen
+eselect locale list
+eselect locale set X
+env-update && source /etc/profile && export PS1="(chroot) $PS1"
+
+### 配置Linux内核
+emerge --ask sys-kernel/gentoo-sources
+
+cd /usr/src/linux
+make menuconfig
+make && make modules_install
+make install
+
+merge --ask sys-kernel/genkernel
+genkernel --install initramfs
+
+nano -w /etc/fstab
+
+```
+
+
 ### install GRUB UEFI bootloader
 #### need to mount EFI partiton on `/boot/efi`
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot/efi
+```
+### exit and umount
+```
+退出chroot环境并unmount全部已持载分区：
+exit
+umount -l /mnt/gentoo/dev{/shm,/pts,}
+umount -R /mnt/gentoo
 ```
 
 >> https://blog.yangmame.org/Gentoo%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html
