@@ -38,11 +38,15 @@ MAKEOPTS="-j5"
 
 # USE
 # set your desktop in DESKTOP , etc kde or gnome
-NEED="X aac acpi alsa ao bash_completion bluetooth bzip2 chromium cdr cjk cups curl dts dvd encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python raw sudo sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
-wifi wmf zip zlib"
-REMOVE="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
-DESKTOP="" 
-USE="${NEED} ${REMOVE} ${DESKTOP}"
+
+Base="acpi ao bash_completion bzip2 chromium cups curl geoip gif git gpm gzip hddtemp javascript jack lame lm_sensors lzma mmap mms multilib  nls pdf  png python raw sudo sockets socks5  ssl tiff udev udisks unicode usb upower upnp 
+wmf zip zlib"
+Media="aac dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 mp4 mpeg svg cdr"
+Hardware="alsa bluetooth sound wifi"
+Remove="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
+Desktop="X cjk networkmanager" 
+
+USE="${Base} ${Media} ${Desktop} ${Remove} ${Hardware}"
 
 # Portage
 PORTDIR="/usr/portage"
