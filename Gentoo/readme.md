@@ -6,13 +6,17 @@ X aac acpi alsa ao bash_completion bluetooth bzip2 cdr cjk cups curl dts dvd enc
 wifi wmf zip zlib zsh-completion
 -gnome -systemd -gtk
 ```
-### EFI partition mount on /boot/efi
-
 #### install grub2 for bootloader
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+### prepar ebuild
+get stage3 tarball and extra into your Dir.
+```
+tar vxpf stage3-*.tar.bz2( or xz) --xattrs-include='*.*' --numeric-owner
+```
+
 ### setting mirror
 ```
 mkdir /mnt/gentoo/etc/portage/repos.conf
@@ -39,12 +43,12 @@ MAKEOPTS="-j5"
 # USE
 # set your desktop in DESKTOP , etc kde or gnome
 
-Base="acpi ao bash_completion bzip2 chromium cups curl geoip gif git gpm gzip hddtemp javascript jack lame lm_sensors lzma mmap mms multilib  nls pdf  png python raw sudo sockets socks5  ssl tiff udev udisks unicode usb upower upnp 
+Base="acpi ao bash_completion bzip2 cups curl geoip gif git gpm gzip hddtemp javascript jack lame lm_sensors lzma mmap mms multilib  nls pdf  png python raw sudo sockets socks5  ssl tiff udev udisks unicode usb upower upnp 
 wmf zip zlib"
 Media="aac dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 mp4 mpeg svg cdr"
 Hardware="alsa bluetooth sound wifi"
 Remove="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
-Desktop="X cjk networkmanager" 
+Desktop="X cjk networkmanager chromium" 
 
 USE="${Base} ${Media} ${Desktop} ${Remove} ${Hardware}"
 
@@ -64,6 +68,7 @@ LINGUAS="en_US zh_CN en zh"
 # Else
 VIDEO_CARDS="intel i965 nvidia"
 GRUB_PLATFORMS="efi-64"
+ACCEPT_KEYWORDS="~amd64"
 
 QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
 QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
@@ -84,9 +89,13 @@ mount --make-rslave /mnt/gentoo/dev
 ```
 
 chroot /mnt/gentoo /bin/bash
-ource /etc/profile
+source /etc/profile
 export PS1="(chroot) ${PS1}"
 ```
+
+### EFI partition mount on /boot/efi
+`mount /dev/sda1 /boot/efi`
+
 ### config and build system
 ```
 emerge-webrsync
