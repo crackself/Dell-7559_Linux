@@ -1,10 +1,5 @@
 ### BroadCom BCM94352Z wireless driver: Broadcom-sta (broadcom-wl)
 
-
-#### install grub2 for bootloader
-```
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
-grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ### prepar ebuild
 get stage3 tarball and extra into your Dir.
