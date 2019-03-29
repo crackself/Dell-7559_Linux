@@ -119,7 +119,7 @@ make menuconfig
 make && make modules_install
 make install
 
-merge --ask sys-kernel/genkernel
+emerge --ask sys-kernel/genkernel
 genkernel --install initramfs
 
 nano -w /etc/fstab
