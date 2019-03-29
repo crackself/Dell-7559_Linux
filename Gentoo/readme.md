@@ -1,11 +1,6 @@
 ### BroadCom BCM94352Z wireless driver: Broadcom-sta (broadcom-wl)
 
-```
-USE:
-X aac acpi alsa ao bash_completion bluetooth bzip2 cdr cjk cups curl dts dvd encode ffmpeg flac geoip gif git gpm gzip hddtemp javascript jack jbig jpeg jpeg2k kde lame lm_sensors lzma mmap mms mp3 mp4 mpeg multilib networkmanager nls pdf plasma png python qt5 raw sockets socks5 sound ssl svg tiff udev udisks unicode usb upower upnp 
-wifi wmf zip zlib zsh-completion
--gnome -systemd -gtk
-```
+
 #### install grub2 for bootloader
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
@@ -40,23 +35,28 @@ CXXFLAGS="${CFLAGS}"
 CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
 MAKEOPTS="-j5"
 
+
 # USE
-# set your desktop in DESKTOP , etc kde or gnome
+Base="acpi bzip2 cups curl geoip gzip hddtemp lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
+Devel="bash_completion git javascript python"
+Hardware="pulseaudio bluetooth sound wifi gpm jack usb"
 
-Base="acpi ao bash_completion bzip2 cups curl geoip gif git gpm gzip hddtemp javascript jack lame lm_sensors lzma mmap mms multilib  nls pdf  png python raw sudo sockets socks5  ssl tiff udev udisks unicode usb upower upnp 
-wmf zip zlib"
-Media="aac dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 mp4 mpeg svg cdr"
-Hardware="alsa bluetooth sound wifi"
-Remove="-bindist -grub -plymouth -systemd consolekit -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
-Desktop="X cjk networkmanager chromium" 
+Desktop="X cjk networkmanager chromium pdf udisks upower networkmanager" 
+Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
 
-USE="${Base} ${Media} ${Desktop} ${Remove} ${Hardware}"
+Remove="-bindis -plymouth -systemd -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
+
+#
+# Do Carefully when using Remove items, make sure NOT CONFLICT.  etc. systemd need when using gnome desktop
+# ${Base} ${Devel} ${Hardware} suggest using, ${Desktop} ${Media} suggest together
+#
+
+USE="${Base} ${Devel} ${Hardware} ${Desktop} ${Media} ${Remove}"
 
 # Portage
 PORTDIR="/usr/portage"
 DISTDIR="${PORTDIR}/distfiles"
 PKGDIR="${PORTDIR}/packages"
-# GENTOO_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/gentoo/"
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
 
 ACCEPT_LICENSE="*"
@@ -65,18 +65,19 @@ ACCEPT_LICENSE="*"
 L10N="en-US zh-CN en zh"
 LINGUAS="en_US zh_CN en zh"
 
-# Else
+# Others
 VIDEO_CARDS="intel i965 nvidia"
 GRUB_PLATFORMS="efi-64"
 ACCEPT_KEYWORDS="~amd64"
 
-QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
-QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
+# QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
+# QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
 
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
 ```
+
 ### 进入新环境
 
 ```
