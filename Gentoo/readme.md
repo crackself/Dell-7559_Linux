@@ -1,9 +1,11 @@
-### BroadCom BCM94352Z wireless driver: Broadcom-sta (broadcom-wl)
+### something need to know:
+- BroadCom BCM94352Z wireless driver: Broadcom-sta (broadcom-wl)
+- ebuild source location is usr/portage/distfiles rise up affter `emerge-webrsync`
 
+### Prepar ebuild
+#### get stage3 tarball and extra into your Dir.
 ```
-### prepar ebuild
-get stage3 tarball and extra into your Dir.
-```
+cd /mnt/gentoo
 tar vxpf stage3-*.tar.bz2( or xz) --xattrs-include='*.*' --numeric-owner
 ```
 
@@ -11,8 +13,7 @@ tar vxpf stage3-*.tar.bz2( or xz) --xattrs-include='*.*' --numeric-owner
 ```
 mkdir /mnt/gentoo/etc/portage/repos.conf
 nano /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-```
-```
+
 [gentoo]
 location = /usr/portage
 sync-type = rsync
@@ -20,7 +21,8 @@ sync-type = rsync
 sync-uri = rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/
 auto-sync = yes
 ```
-#### /etc/portage/make.conf
+
+#### Edit make.conf
 ```
 nano /mnt/gentoo/portage/make.conf
 
@@ -74,7 +76,6 @@ LC_MESSAGES=C
 ```
 
 ### 进入新环境
-
 ```
 mount --types proc /proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
@@ -99,7 +100,7 @@ eselect profile list
 eselect profile set X
 
 emerge --ask --verbose --update --deep --newuse @world
-- ebuild source location is usr/portage/distfiles
+
 echo "Asia/Shanghai" > /etc/timezone
 emerge --config sys-libs/timezone-data
 
