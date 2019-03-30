@@ -96,8 +96,8 @@ export PS1="(chroot) ${PS1}"
 `mount /dev/sda1 /boot/efi`
 
 ### config and build system
+
 ```
-emerge-webrsync
 eselect profile list
 eselect profile set X
 
