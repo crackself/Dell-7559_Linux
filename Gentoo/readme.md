@@ -151,7 +151,7 @@ emerge --ask broadcom-sta iw wpa_supplicant dialog
 ```
 ### Install base Desktop(Optional)
 ```
-emerge --ask xorg kde-plasma/plasma-desktop
+emerge --ask xorg kde-plasma/plasma-desktop plasma-nm plasma-pa
 ```
 
 ### Install FULL KDE-PLASMA Desktop(Optional)
