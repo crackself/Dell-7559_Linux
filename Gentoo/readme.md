@@ -24,7 +24,7 @@ auto-sync = yes
 
 #### Edit make.conf
 ```
-nano /mnt/gentoo/portage/make.conf
+nano /mnt/gentoo/etc/portage/make.conf
 
 # GCC
 CFLAGS="-march=skylake -O2 -pipe"
@@ -42,6 +42,8 @@ Desktop="X cjk networkmanager chromium pdf udisks upower networkmanager"
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
 
 Remove="-bindis -plymouth -systemd -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
+
+# if using systemd, it must remove "-systemd -modemmanager"
 
 #
 # Do Carefully when using Remove items, make sure NOT CONFLICT.  etc. systemd need when using gnome desktop
