@@ -98,6 +98,8 @@ export PS1="(chroot) ${PS1}"
 ### config and build system
 
 ```
+emerge-webrsync
+
 eselect profile list
 eselect profile set X
 
@@ -133,9 +135,28 @@ nano -w /etc/fstab
 ```
 emerge --ask --verbose sys-boot/grub:2 sys-boot/os-prober
 
-grub-install --target=x86_64-efi --efi-directory=/boot/efi
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+### Manage Users
+```
+passwd root
+
+seradd -m -G users,wheel,portage,usb,video [your user name]
+passwd [your user name]
+```
+### Install specially Wireless Driver for BCM94352Z
+```
+emerge --ask broadcom-sta iw wpa_supplicant dialog
+```
+### Install base Desktop(Optional)
+```
+emerge --ask xorg kde-plasma/plasma-desktop
+```
+
+### Install FULL KDE-PLASMA Desktop(Optional)
+`emerge --ask kde-plasma/plasma-meta`
+
 ### exit and umount
 ```
 退出chroot环境并unmount全部已持载分区：
