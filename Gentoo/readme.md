@@ -26,31 +26,35 @@ auto-sync = yes
 ```
 nano /mnt/gentoo/etc/portage/make.conf
 
+# These settings were set by the catalyst build script that automatically
+# built this stage.
+# Please consult /usr/share/portage/config/make.conf.example for a more
+# detailed example.
 # GCC
 CFLAGS="-march=skylake -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
+CHOST="x86_64-pc-linux-gnu"
 CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
-MAKEOPTS="-j5"
+MAKEOPTS="-j7"
 
 
 # USE
 Base="acpi bzip2 cups curl geoip gzip hddtemp lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
 Devel="bash_completion git javascript python"
 Hardware="pulseaudio bluetooth sound wifi gpm jack usb"
-
-Desktop="X cjk networkmanager chromium pdf udisks upower networkmanager" 
+Desktop="X cjk networkmanager chromium pdf udisks upower networkmanager dbus policykit udisks" 
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
-
-Remove="-bindis -plymouth -systemd -modemmanager -gnome-shell -gnome -gnome-keyring -nautilus -modules -qt5"
+# Remove="-bindis -plymouth -systemd -modemmanager -gtk -gnome-shell -gnome -gnome-keyring -nautilus -modules"
 
 # if using systemd, it must remove "-systemd -modemmanager"
+# if not necessary, DO NOT use "Remove"
 
 #
 # Do Carefully when using Remove items, make sure NOT CONFLICT.  etc. systemd need when using gnome desktop
 # ${Base} ${Devel} ${Hardware} suggest using, ${Desktop} ${Media} suggest together
 #
 
-USE="${Base} ${Devel} ${Hardware} ${Desktop} ${Media} ${Remove}"
+USE="${Base} ${Devel} ${Hardware} ${Desktop} ${Media}"
 
 # Portage
 PORTDIR="/usr/portage"
@@ -102,7 +106,7 @@ emerge-webrsync
 emerge --sync
 
 eselect profile list
-eselect profile set 20
+eselect profile set 20   # 20 mark ad kde-plasma/systemd
 
 emerge --ask --verbose --update --deep --newuse @world
 
