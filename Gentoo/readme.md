@@ -99,9 +99,10 @@ export PS1="(chroot) ${PS1}"
 
 ```
 emerge-webrsync
+emerge --sync
 
 eselect profile list
-eselect profile set X
+eselect profile set 20
 
 emerge --ask --verbose --update --deep --newuse @world
 
