@@ -171,6 +171,7 @@ umount -l /mnt/gentoo/dev{/shm,/pts,}
 umount -R /mnt/gentoo
 ```
 
+>> https://www.jianshu.com/p/31f7ff6ee3d4
 >> https://blog.yangmame.org/Gentoo%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html
 >> https://wiki.gentoo.org/wiki/Handbook:AMD64/zh-cn
 >> https://wiki.gentoo.org/wiki/Dell_XPS_13_9343 (For configure wireless and bluetooth)
