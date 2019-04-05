@@ -6,7 +6,9 @@
 #### get stage3 tarball and extra into your Dir.
 ```
 cd /mnt/gentoo
-tar vxpf stage3-*.tar.bz2( or xz) --xattrs-include='*.*' --numeric-owner
+tar vxpf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner
+or
+tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 
 ### setting mirror
@@ -17,7 +19,6 @@ nano /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 [gentoo]
 location = /usr/portage
 sync-type = rsync
-#sync-uri = rsync://mirrors.tuna.tsinghua.edu.cn/gentoo-portage/
 sync-uri = rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/
 auto-sync = yes
 ```
@@ -34,7 +35,7 @@ nano /mnt/gentoo/etc/portage/make.conf
 CFLAGS="-march=skylake -O2 -pipe"
 CXXFLAGS="${CFLAGS}"
 CHOST="x86_64-pc-linux-gnu"
-CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
+#CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
 MAKEOPTS="-j7"
 
 
@@ -65,8 +66,8 @@ GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
 ACCEPT_LICENSE="*"
 
 # Language
-L10N="en-US zh-CN en zh"
-LINGUAS="en_US zh_CN en zh"
+#L10N="en-US zh-CN en zh"
+#LINGUAS="en_US zh_CN en zh"
 
 # Others
 VIDEO_CARDS="intel i965 nvidia"
