@@ -148,7 +148,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 passwd root
 
-seradd -m -G users,wheel,portage,usb,video [your user name]
+useradd -m -G users,wheel,portage,usb,video [your user name]
 passwd [your user name]
 ```
 ### Install specially Wireless Driver for BCM94352Z
