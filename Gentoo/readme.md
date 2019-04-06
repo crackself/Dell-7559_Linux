@@ -72,7 +72,8 @@ ACCEPT_LICENSE="*"
 # Others
 VIDEO_CARDS="intel i965 nvidia"
 GRUB_PLATFORMS="efi-64"
-ACCEPT_KEYWORDS="~amd64"
+#ACCEPT_KEYWORDS="amd64"   # 稳定版本软件  非必须
+#ACCEPT_KEYWORDS="~amd64" # 启用不稳定版本软件
 
 # QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
 # QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
@@ -90,6 +91,10 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 ```
+```
+mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys && mount --make-rslave /mnt/gentoo/sys && mount --rbind /dev /mnt/gentoo/dev && mount --make-rslave /mnt/gentoo/dev
+```
+
 ```
 
 chroot /mnt/gentoo /bin/bash
@@ -133,6 +138,8 @@ emerge --ask sys-kernel/genkernel
 genkernel --install initramfs
 
 nano -w /etc/fstab
+/dev/sda1   /boot/efi   vfat  defaults  0 2
+/dev/sdb3   /           ext4   defaults 0 1
 ```
 
 
@@ -172,6 +179,9 @@ umount -R /mnt/gentoo
 ```
 
 >> https://www.jianshu.com/p/31f7ff6ee3d4
+
 >> https://blog.yangmame.org/Gentoo%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.html
+
 >> https://wiki.gentoo.org/wiki/Handbook:AMD64/zh-cn
+
 >> https://wiki.gentoo.org/wiki/Dell_XPS_13_9343 (For configure wireless and bluetooth)
