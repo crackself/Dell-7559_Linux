@@ -146,9 +146,13 @@ nano -w /etc/fstab
 ### install GRUB UEFI bootloader
 #### need to mount EFI partiton on `/boot/efi`
 ```
+mount /dev/sda1 /boot/efi
 emerge --ask --verbose sys-boot/grub:2 sys-boot/os-prober
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
+or some machine need removable lable:
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable --bootloader-id=Gentoo
+
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ### Manage Users
