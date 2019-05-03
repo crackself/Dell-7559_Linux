@@ -91,15 +91,11 @@ mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
 ```
+or by one line:
 ```
 mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys && mount --make-rslave /mnt/gentoo/sys && mount --rbind /dev /mnt/gentoo/dev && mount --make-rslave /mnt/gentoo/dev
-```
 
-```
-
-chroot /mnt/gentoo /bin/bash
-source /etc/profile
-export PS1="(chroot) ${PS1}"
+chroot /mnt/gentoo /bin/bash && source /etc/profile && export PS1="(chroot) ${PS1}"
 ```
 
 ### EFI partition mount on /boot/efi
@@ -109,7 +105,7 @@ export PS1="(chroot) ${PS1}"
 
 ```
 emerge-webrsync
-emerge --sync
+emerge --sync {Not neceesary}
 
 eselect profile list
 eselect profile set 20   # 20 mark ad kde-plasma/systemd
@@ -138,21 +134,29 @@ emerge --ask sys-kernel/genkernel
 genkernel --install initramfs
 
 nano -w /etc/fstab
-/dev/sda1   /boot/efi   vfat  defaults  0 2
+/dev/sda1   /boot/efi   vfat  defaults  1 2
 /dev/sdb3   /           ext4   defaults 0 1
 ```
-
+#### More about fstab
+`blkid` for display partition's UUID
+when using UUID, replace `/dev/sdaX` by `UUID=xxx-xxxx`
 
 ### install GRUB UEFI bootloader
 #### need to mount EFI partiton on `/boot/efi`
 ```
 mount /dev/sda1 /boot/efi
 emerge --ask --verbose sys-boot/grub:2 sys-boot/os-prober
-
+```
+#### For UEFI:
+```
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
 or some machine need removable lable:
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable --bootloader-id=Gentoo
-
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+#### For BIOS bootloader:
+```
+grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ### Manage Users
@@ -162,6 +166,29 @@ passwd root
 useradd -m -G users,wheel,portage,usb,video [your user name]
 passwd [your user name]
 ```
+### Setting Host name
+```
+nano -w /etc/conf.d/hostname
+# 设置主机名变量，选择主机名
+hostname="Gentoo"
+```
+### Setting locale
+```
+echo "Asia/Shanghai" > /etc/timezone
+emerge --config sys-libs/timezone-data
+
+nano -w /etc/locale.gen
+
+en_US ISO-8859-1
+en_US.UTF-8 UTF-8
+zh_CN GBK 
+zh_CN.UTF-8 UTF-8
+
+locale-gen
+eselect locale list
+eselect locale set X
+```
+
 ### Install specially Wireless Driver for BCM94352Z
 ```
 emerge --ask broadcom-sta iw wpa_supplicant dialog
@@ -177,9 +204,38 @@ emerge --ask xorg kde-plasma/plasma-desktop plasma-nm plasma-pa
 ### exit and umount
 ```
 退出chroot环境并unmount全部已持载分区：
-exit
-umount -l /mnt/gentoo/dev{/shm,/pts,}
-umount -R /mnt/gentoo
+exit && umount -l /mnt/gentoo/dev{/shm,/pts,} && umount -R /mnt/gentoo
+```
+
+
+Build Gentoo Kernel on VPS(KVM machine)
+--
+```
+cd /usr/src/linux
+make menuconfig
+And then configure these things:
+
+Gentoo Linux --->
+   Support for init systems, system and service managers --->
+      [*] systemd
+
+Processor type and features  --->
+     [*] Linux guest support --->
+         [*] Enable Paravirtualization code
+         [*] KVM Guest support (including kvmclock) Device Drivers  --->
+     Virtio drivers  --->
+         <*>   PCI driver for virtio devices
+     [*] Block devices  --->
+         <*>   Virtio block driver
+     SCSI device support  --->
+         [*] SCSI low-level drivers  --->
+             [*]   virtio-scsi support
+     [*] Network device support  --->
+         [*] Network core driver support
+             <*>   Virtio network driver
+
+File systems --->
+    <*> F2FS filesystem support #You can use any file system you like.
 ```
 
 >> https://www.jianshu.com/p/31f7ff6ee3d4
@@ -189,3 +245,5 @@ umount -R /mnt/gentoo
 >> https://wiki.gentoo.org/wiki/Handbook:AMD64/zh-cn
 
 >> https://wiki.gentoo.org/wiki/Dell_XPS_13_9343 (For configure wireless and bluetooth)
+
+>> https://jerryding.site/installing-gentoo-on-vps-and-build-up-a-website/  (complie kernel for VPS)
