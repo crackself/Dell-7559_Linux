@@ -31,56 +31,45 @@ nano /mnt/gentoo/etc/portage/make.conf
 # built this stage.
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
-# GCC
-CFLAGS="-march=skylake -O2 -pipe"
-CXXFLAGS="${CFLAGS}"
+COMMON_FLAGS="-march=skylake -O2 -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
 CHOST="x86_64-pc-linux-gnu"
-#CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
-MAKEOPTS="-j7"
+CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
+MAKEOPTS="-j4"
 
+# NOTE: This stage was built with the bindist Use flag enabled
+PORTDIR="/usr/portage"
+DISTDIR="/usr/portage/distfiles"
+PKGDIR="/usr/portage/packages"
+GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
+#source /var/lib/layman/make.conf
 
 # USE
-Base="acpi bzip2 cups curl geoip gzip hddtemp lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
-Devel="bash_completion git javascript python"
-Hardware="pulseaudio bluetooth sound wifi gpm jack usb"
-Desktop="X cjk networkmanager chromium pdf udisks upower networkmanager dbus policykit udisks" 
+Base="acpi bzip2 cups curl geoip gzip hddtemp icu lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
+Devel="git python"
+Hardware="pulseaudio bluetooth deprecated sound wifi gpm jack usb"
+Desktop="X cjk chromium gtk gtk2 gtk3 -gnome -gnome-shell"
+# Default USE setting to using KDE, or it can add -kde for using others either kde
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
-# Remove="-bindis -plymouth -systemd -modemmanager -gtk -gnome-shell -gnome -gnome-keyring -nautilus -modules"
-
-# if using systemd, it must remove "-systemd -modemmanager"
-# if not necessary, DO NOT use "Remove"
-
-#
-# Do Carefully when using Remove items, make sure NOT CONFLICT.  etc. systemd need when using gnome desktop
-# ${Base} ${Devel} ${Hardware} suggest using, ${Desktop} ${Media} suggest together
-#
 
 USE="${Base} ${Devel} ${Hardware} ${Desktop} ${Media}"
 
-# Portage
-PORTDIR="/usr/portage"
-DISTDIR="${PORTDIR}/distfiles"
-PKGDIR="${PORTDIR}/packages"
-GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
-
-ACCEPT_LICENSE="*"
-
-# Language
-#L10N="en-US zh-CN en zh"
-#LINGUAS="en_US zh_CN en zh"
-
-# Others
 VIDEO_CARDS="intel i965 nvidia"
 GRUB_PLATFORMS="efi-64"
-#ACCEPT_KEYWORDS="amd64"   # 稳定版本软件  非必须
-#ACCEPT_KEYWORDS="~amd64" # 启用不稳定版本软件
+ACCEPT_LICENSE="*"
+#VIDEO_CARDS="intel i965"
 
-# QEMU_SOFTMMU_TARGETS="alpha aarch64 arm i386 mips mips64 mips64el mipsel ppc ppc64 s390x sh4 sh4eb sparc sparc64 x86_64"
-# QEMU_USER_TARGETS="alpha aarch64 arm armeb i386 mips mipsel ppc ppc64 ppc64abi32 s390x sh4 sh4eb sparc sparc32plus sparc64"
+# Language
+L10N="en-US zh-CN en zh"
+LINGUAS="en_US zh_CN en zh"
 
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
+
 ```
 
 ### 进入新环境
