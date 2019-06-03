@@ -100,5 +100,21 @@ Sun Mar 10 18:39:30 2019
 ```
 $ optirun glxspheres64
 ```
+
+后续优化
+yaourt
+
+Yaourt是archlinux方便使用的关键部件之一，但没有被整合到系统安装中的工具。建议在装完系统重启之后，更新完pacman和基本系统之后，就安装这个工具。
+最简单安装Yaourt的方式是添加Yaourt源至您的 /etc/pacman.conf，在文件最后加入:
+
+    [archlinuxcn]
+    #The Chinese Arch Linux communities packages.
+    SigLevel = Optional TrustAll
+    Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+
+然后
+
+    pacman -Syu yaourt
+
 ![test](https://github.com/crackself/Dell-7559_Linux/blob/master/ArchLinux/Screenshot.png)
 
