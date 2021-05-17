@@ -23,13 +23,41 @@ blacklist ssb
 
 blacklist iTCO_wdt   # watchdog kernel module
 blacklist nouveau    # nvidia opensource driver
-
 ```
-### 安装搜狗输入法
+### 安装桌面环境
+```
+新手推荐安装budgie-desktop作为启动桌面，简洁且好看，功能足以日常使用，可以额外安装gnome组件以完善功能
+sudo pacman -S budgie-desktop
+
+通过startx启动：
+编辑~/.xinitrc，加入以下内容
+export XDG_CURRENT_DESKTOP=Budgie:GNOME
+exec budgie-desktop
+```
+### dwm 动态窗口管理器
+```
+极简桌面环境，高性能，待完善
+```
+
+###安装声卡驱动及管理器
+```
+sudo pacman -S pulseaudio
+二合一耳机插口推荐安装组件：pulseaudio-jack
+```
+
+
+### 安装搜狗输入法（不再推荐）
 ```
 sudo pacman -S fcitx-sogoupinyin
 sudo pacman -S fcitx-im
 sudo pacman -S fcitx-configtool
+```
+
+### 安装fcitx5及rime输入法
+```
+sudo pacman -S fcitx5-im fcitx5-rime
+
+通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启
 ```
 
 ### 安装yarout
