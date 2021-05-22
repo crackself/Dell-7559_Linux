@@ -1,6 +1,6 @@
 ## 针对性屏蔽冲突的内核模块: 
 ### 屏蔽watchdog
-### 安装broadcom-wl或broadcom-wl-dkms驱动（或者跟随内核升级，自动化构建）
+### 安装broadcom-wl或broadcom-wl-dkms（跟随内核升级，自动化构建，不以来ArchLinux官方内核）驱动
 ### 屏蔽与DW1560(xx:43b1) BroadCom BCM94352Z专有驱动冲突的内核模块
 
 for WD1560(Broadcom 4352Z, id= 14e4:43b1), need install `broadcom-wl`--the limited driver from broacom
@@ -24,6 +24,9 @@ blacklist ssb
 blacklist iTCO_wdt   # watchdog kernel module
 blacklist nouveau    # nvidia opensource driver
 ```
+### 安装Wi-Fi 命令行连接工具
+https://wiki.archlinux.org/title/Iwd#iwctl
+
 ### 安装桌面环境
 ```
 新手推荐安装budgie-desktop作为启动桌面，简洁且好看，功能足以日常使用，可以额外安装gnome组件以完善功能
@@ -55,9 +58,17 @@ sudo pacman -S fcitx-configtool
 
 ### 安装fcitx5及rime输入法
 ```
-sudo pacman -S fcitx5-im fcitx5-rime
+sudo pacman -S fcitx5-im fcitx5-rime  # fcitx5-gtk及fcitx-qt视情况安装（DWM界面firefox需要fcitx-gtk）
 
-通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启
+通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启:
+    # 此为首行
+    export INPUT_METHOD="fcitx5"
+    export XMODIFIERS="@im=fcitx5"
+    export GTK_IM_MODULE="fcitx5"
+    export QT_IM_MODULE="fcitx5"
+    fcitx5 &
+    ...
+
 ```
 
 ### 安装yarout
