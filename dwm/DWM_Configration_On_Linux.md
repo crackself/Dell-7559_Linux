@@ -6,7 +6,8 @@
 #### 基本组件要求:
     
     X11图形服务:  xorg-server xorg-xinitrc  xf86-video-intel
-    声音控制: alsa  alsa-utils  pulseaudio  pulseaudio-alsa
+    声音控制: alsa  alsa-utils  pulseaudio  (可选pulseaudio-alsa pulseaudio-jack)  
+        # pulseaudio 配合pactl set-sink-mute 0 toggle可同时控制耳机静音
       二合一耳机插口:pulseaudio-jack
     背光控制: xorg-xbacklight
 #### dwm 源码修改
@@ -17,7 +18,8 @@
     s...tatic const char *termcmd[]  = { "st", NULL };
     static const char *volup[] = { "amixer", "-qM", "set", "Master", "2%+", "umute", NULL };
     static const char *voldown[] = { "amixer", "-qM", "set", "Master", "2%-", "umute", NULL };
-    static const char *mute[] = { "amixer", "-qM", "set", "Master", "toggle", NULL };
+    /* static const char *mute[] = { "amixer", "-qM", "set", "Master", "toggle", NULL }; */
+    static const char *mute[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
     static const char *lightup[] = { "xbacklight", "-inc", "2", NULL };
     static const char *lightdown[] = { "xbacklight", "-dec", "2", NULL };
 
