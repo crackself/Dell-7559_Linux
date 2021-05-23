@@ -38,29 +38,34 @@ FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
 CHOST="x86_64-pc-linux-gnu"
 CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
-MAKEOPTS="-j4"
+MAKEOPTS="-j3"
 
 # NOTE: This stage was built with the bindist Use flag enabled
 PORTDIR="/usr/portage"
 DISTDIR="/usr/portage/distfiles"
 PKGDIR="/usr/portage/packages"
+
 GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
-#source /var/lib/layman/make.conf
 
 # USE
 Base="acpi bzip2 cups curl geoip gzip hddtemp icu lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
 Devel="git python"
 Hardware="pulseaudio bluetooth deprecated sound wifi gpm jack usb"
-Desktop="X cjk chromium gtk gtk2 gtk3 -gnome -gnome-shell"
+Desktop="X cjk"
+Del="-qt4 -qt5 -gnome -gnome-shell -gnome-keyring -doc -test -bindist -systemd -gtk -wayland"
 # Default USE setting to using KDE, or it can add -kde for using others either kde
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
 
-USE="${Base} ${Devel} ${Hardware} ${Desktop} ${Media}"
+USE="${Del} ${Base} ${Devel} ${Hardware} ${Desktop} ${Media}"
 
-VIDEO_CARDS="intel i965 nvidia"
+VIDEO_CARDS="intel i965 iris nvidia"
+ALSA_CARDS="hda-intel"
+INPUT_DEVICES="libinput"
 GRUB_PLATFORMS="efi-64"
-ACCEPT_LICENSE="*"
-#VIDEO_CARDS="intel i965"
+ACCEPT_LICENSE="* -@EULA""
+
+# PYTHON_TARGETS="python3_9"
+# PYTHON_SINGLE_TARGET="python3_9"
 
 # Language
 L10N="en-US zh-CN en zh"
@@ -70,6 +75,8 @@ LINGUAS="en_US zh_CN en zh"
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
 
+# suggest for large RAM over 8GB, make build faster
+PORTAGE_TMPDIR="/tmp"
 ```
 
 ### 进入新环境
@@ -79,6 +86,12 @@ mount --rbind /sys /mnt/gentoo/sys
 mount --make-rslave /mnt/gentoo/sys
 mount --rbind /dev /mnt/gentoo/dev
 mount --make-rslave /mnt/gentoo/dev
+```
+### 非Gentoo系统需要
+```
+test -L /dev/shm && rm /dev/shm && mkdir /dev/shm 
+mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm 
+chmod 1777 /dev/shm
 ```
 or by one line:
 ```
