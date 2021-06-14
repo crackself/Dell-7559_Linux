@@ -1,7 +1,7 @@
 # 说明
 ## 本文档专用记录Linux DWM 配置过程（所涉及组件参考Archlinux官方组件库）
 ### DWM及基础配套组件
-    dwm dmenu xterminal
+    dwm dmenu st
 ### 笔记本音量控制及屏幕亮度快捷键设置
 #### 基本组件要求:
     
@@ -33,7 +33,7 @@
             { 0,                            XF86XK_MonBrightnessUp,     spawn,      {.v = lightup } },
             { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
             ....
-#### dwm.c 添加`#include <X11/Xutil.h>`
+#### dwm.c 添加`#include <X11/XF86keysym.h>`
     ...
     #include <X11/Xutil.h>
     #include <X11/XF86keysym.h>
