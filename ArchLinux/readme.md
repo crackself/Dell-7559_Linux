@@ -58,7 +58,7 @@ sudo pacman -S fcitx-configtool
 
 ### 安装fcitx5及rime输入法
 ```
-sudo pacman -S fcitx5-im fcitx5-rime  # fcitx5-gtk及fcitx-qt视情况安装（DWM界面firefox需要fcitx-gtk）
+sudo pacman -S fcitx5-im fcitx5-rime  # fcitx5-gtk及fcitx5-qt视情况安装（DWM界面firefox需要fcitx-gtk）
 
 通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启:
     # 此为首行
