@@ -3,7 +3,7 @@
 
 ### 安装：
 
-    pacman -S xlibinput f86-input-libinput
+    pacman -S libinput xf86-input-libinput
 #### 配置文件：
     nano /etc/X11/xorg.conf.d/30-touchpad.conf
 ```
