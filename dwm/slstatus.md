@@ -1,4 +1,4 @@
-### [slstatus](https://git.suckless.org/slstatusus)，DWM的一个状态栏插件
+### [slstatus](https://git.suckless.org/slstatus)，DWM的一个状态栏插件
     可用于显示音量、硬件信息、日期、天气(需配合自动化脚本)
 #### 配置文件修改
 ##### config.def.h
