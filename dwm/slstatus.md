@@ -6,7 +6,7 @@
 ...
 static const struct arg args[] = {
         /* function format          argument */
-         cpu_perc,     "CPU %s%% |", NULL },         /*CPU使用率*/
+        { cpu_perc,     "CPU %s%% |", NULL },         /*CPU使用率*/
         { ram_perc,     "RAM %s%% |", NULL },         /*内存使用率*/
         { disk_perc,    "HDD %s%% |", "/" },         /*内存使用率*/
         { ipv4,         "IP %2s |", "eth0" },        /*IP地址*/
