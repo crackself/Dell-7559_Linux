@@ -31,6 +31,10 @@ Section "InputClass"
         Option "TappingDrag" "true"
         #Enables or disables drag lock during tapping behavior
         Option "TappingDragLock" "true"
+        #Setting acceleration to 90%
+        Option "TransformationMatrix" "0.90 0 0 0 0.90 0 0 0 1"
+        #Disabling acceleration on touchpad
+        #Option "AccelProfile" "flat"
 EndSection
 ```
 ### 查看所有libinput支持的设备及其具有的功能：
