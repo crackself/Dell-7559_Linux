@@ -1,11 +1,13 @@
 ### Test in Archlinux, with thunar
-`udisds`  for automount
-`polkit` for AUTHENTICATION
 
-`udisksctl mount -b /dev/sdb2`
-to findout deamon name, such as `org.freedesktop.udisks2.filesystem-mount-system`
+### need:
+    thunar thunar-volman gvfs ntfs-3g udisds polkit
 
-permit wheel group user excute without passwd:
+### mount a disk to findout deamon name:
+    udisksctl mount -b /dev/sdb2
+such as `org.freedesktop.udisks2.filesystem-mount-system`
+
+### permit wheel group user excute deamon without passwd:
   
     nano /etc/polkit-1/rules.d/50-udiskie.rules
 ```
