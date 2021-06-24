@@ -1,10 +1,9 @@
 ## 针对性屏蔽冲突的内核模块: 
 ### 屏蔽watchdog
-### 安装broadcom-wl或broadcom-wl-dkms（跟随内核升级，自动化构建，不以来ArchLinux官方内核）驱动
+### 安装broadcom-wl或broadcom-wl-dkms（跟随内核升级，自动化构建，不依赖ArchLinux官方内核）驱动
 ### 屏蔽与DW1560(xx:43b1) BroadCom BCM94352Z专有驱动冲突的内核模块
 
-for WD1560(Broadcom 4352Z, id= 14e4:43b1), need install `broadcom-wl`--the limited driver from broacom
-then, diable other conflict kernel drivers.
+for WD1560(Broadcom 4352Z, id= 14e4:43b1), need install `broadcom-wl`--the limited driver from broacom, diable other conflict kernel drivers.
 Besides,you may notice that `watchdog` default turn on by kernel, it cause power down or reboot slowly, also blacklist it: 
 On someones laptop, the dual graphic, especially the nvidia, you may want to disable opensoure driver. 
 Berfore install limited driver from nvdia, blacklist `nouveau` help to save power and boot smoothly.
@@ -43,13 +42,14 @@ exec budgie-desktop
 ```
 
 ###安装声卡驱动及管理器
+#### pulseaudio 无法在root用户环境启用
 ```
-sudo pacman -S pulseaudio
+sudo pacman -S pulseaudio pulseaudio-alsa
 二合一耳机插口推荐安装组件：pulseaudio-jack
 ```
 
 
-### 安装搜狗输入法（不再推荐）
+#### 安装搜狗输入法（不再推荐）
 ```
 sudo pacman -S fcitx-sogoupinyin
 sudo pacman -S fcitx-im
@@ -59,15 +59,18 @@ sudo pacman -S fcitx-configtool
 ### 安装fcitx5及rime输入法
 ```
 sudo pacman -S fcitx5-im fcitx5-rime  # fcitx5-gtk及fcitx5-qt视情况安装（DWM界面firefox需要fcitx-gtk）
+```
 
-通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启:
-    # 此为首行
-    export INPUT_METHOD="fcitx5"
-    export XMODIFIERS="@im=fcitx5"
-    export GTK_IM_MODULE="fcitx5"
-    export QT_IM_MODULE="fcitx5"
-    fcitx5 &
-    ...
+#### 通过startx启动桌面时添加 exec fcitx5 &  到~/.xinitrc 确保进入桌面后fcitx5正确开启:
+```
+nano ~/.xinitrc
+# 此为首行
+export INPUT_METHOD="fcitx5"
+export XMODIFIERS="@im=fcitx5"
+export GTK_IM_MODULE="fcitx5"
+export QT_IM_MODULE="fcitx5"
+fcitx5 &
+...
 
 ```
 
