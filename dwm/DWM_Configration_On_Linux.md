@@ -6,7 +6,7 @@
 #### 基本组件要求:
     
     X11图形服务:  xorg-server xorg-xinitrc libxft xf86-video-intel
-    声音控制: alsa  alsa-utils  pulseaudio  (可选pulseaudio-alsa pulseaudio-jack)  
+    声音控制: alsa-utils  pulseaudio pulseaudio-alsa (可选pulseaudio-jack)  
         # pulseaudio 配合pactl set-sink-mute 0 toggle可同时控制耳机静音
       二合一耳机插口:pulseaudio-jack
     背光控制: xorg-xbacklight
