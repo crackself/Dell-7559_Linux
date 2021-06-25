@@ -10,6 +10,9 @@
         # pulseaudio 配合pactl set-sink-mute 0 toggle可同时控制耳机静音
       二合一耳机插口:pulseaudio-jack
     背光控制: xorg-xbacklight
+### 字体要求：
+        ttf-nerd-fonts-symbols
+        对应的图标字体https://www.nerdfonts.com/cheat-sheet
 #### dwm 源码修改
 #####  config.def.h 添加以下内容
     
