@@ -1,5 +1,5 @@
 ### [slstatus](https://git.suckless.org/slstatus)，DWM的一个状态栏插件
-    可用于显示音量、硬件信息、日期、天气(需配合自动化脚本)
+    可用于显示音量、硬件信息、日期、天气(需配合自动化脚本),推荐字体图标https://fontawesome.com/v5/cheatsheet/free/
 #### 配置文件修改
 ##### config.def.h
 ```
