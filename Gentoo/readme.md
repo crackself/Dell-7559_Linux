@@ -189,7 +189,7 @@ emerge --ask broadcom-sta iw wpa_supplicant dialog
 ```
 ### Install base Desktop(Optional)
 ```
-emerge --ask xorg-server xinit kde-plasma/plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin alacritty
+emerge --ask xorg-server xinit kde-plasma/plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin alacritty wqy-microhei
 ```
 
 ### Install FULL KDE-PLASMA Desktop(Optional)
