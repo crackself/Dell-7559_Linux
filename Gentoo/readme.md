@@ -26,57 +26,49 @@ auto-sync = yes
 #### Edit make.conf
 ```
 nano /mnt/gentoo/etc/portage/make.conf
-
 # These settings were set by the catalyst build script that automatically
 # built this stage.
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
-COMMON_FLAGS="-march=skylake -O2 -pipe"
+COMMON_FLAGS="-march=native -O2 -pipe"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-CHOST="x86_64-pc-linux-gnu"
-CPU_FLAGS_X86="aes avx avx2 fma3 mmx mmxext popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3"
 MAKEOPTS="-j3"
 
-# NOTE: This stage was built with the bindist Use flag enabled
-PORTDIR="/usr/portage"
-DISTDIR="/usr/portage/distfiles"
-PKGDIR="/usr/portage/packages"
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3"
+CHOST="x86_64-pc-linux-gnu"
 
-GENTOO_MIRRORS="https://mirrors.ustc.edu.cn/gentoo/"
-
-# USE
-Base="acpi bzip2 cups curl geoip gzip hddtemp icu lm_sensors lzma mmap multilib nls ncurses sudo sockets socks5 source ssl udev unicode upnp zip zlib"
-Devel="git python"
-Hardware="pulseaudio bluetooth deprecated sound wifi gpm jack usb"
-Desktop="X cjk"
-Del="-qt4 -qt5 -gnome -gnome-shell -gnome-keyring -doc -test -bindist -systemd -gtk -wayland"
-# Default USE setting to using KDE, or it can add -kde for using others either kde
+del="-bindist -debug -doc -test -handbook -nls -accessibility -mdev -consolekit -dhcpcd -netifrc -oss -gpm -iptables -bluetooth -pulseaudio"
+kde="-gnome-shell -gnome -gnome-keyring -gtk -systemd kde"
+dwm="-gnome-shell -gnome -gnome-keyring -gtk -systemd -kde -qt4 -qt5"
+base="lm-sensors udev icu minizip blkid acpi dbus policykit elogind udisks http2"
+add="iwd wifi ppp dhclient networkmanager usb alsa audio sudo git"
+desktop="X cjk jack vdpau vaapi"
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
-
-USE="${Del} ${Base} ${Devel} ${Hardware} ${Desktop} ${Media}"
+USE="${del} ${dwm} ${base} ${add} ${desktop}"
 
 VIDEO_CARDS="intel i965 iris nvidia"
 ALSA_CARDS="hda-intel"
 INPUT_DEVICES="libinput"
 GRUB_PLATFORMS="efi-64"
-ACCEPT_LICENSE="* -@EULA""
+ACCEPT_LICENSE="*"
+ACCEPT_KEYWORDS="~amd64"
 
-# PYTHON_TARGETS="python3_9"
-# PYTHON_SINGLE_TARGET="python3_9"
-
-# Language
 L10N="en-US zh-CN en zh"
-LINGUAS="en_US zh_CN en zh"
+AUTO_CLEAN="yes"
+
+LLVM_TARGETS="X86"
+
+# NOTE: This stage was built with the bindist Use flag enabled
+PORTDIR="/var/db/repos/gentoo"
+DISTDIR="/var/cache/distfiles"
+PKGDIR="/var/cache/binpkgs"
 
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
-
-# suggest for large RAM over 8GB, make build faster
-PORTAGE_TMPDIR="/tmp"
 ```
 
 ### 进入新环境
@@ -197,7 +189,7 @@ emerge --ask broadcom-sta iw wpa_supplicant dialog
 ```
 ### Install base Desktop(Optional)
 ```
-emerge --ask xorg kde-plasma/plasma-desktop plasma-nm plasma-pa
+emerge --ask xorg-server xinit kde-plasma/plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin alacritty
 ```
 
 ### Install FULL KDE-PLASMA Desktop(Optional)
