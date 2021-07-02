@@ -11,6 +11,7 @@
       二合一耳机插口:pulseaudio-jack
     背光控制: xorg-xbacklight
 ### 字体要求：
+        media-fonts/fontawesome
         ttf-nerd-fonts-symbols
         对应的图标字体https://www.nerdfonts.com/cheat-sheet
 #### dwm 源码修改
