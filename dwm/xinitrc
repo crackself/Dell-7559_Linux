@@ -1,0 +1,4 @@
+# exec dbus-launch --exit-with-session startplasma-x11    # start plasma
+feh --bg-fill --randomize  ~/photo/* &                    # set wallpaper image from ~/photo/
+exec slstatus &                                           # start slstatus bar
+exec dwm
