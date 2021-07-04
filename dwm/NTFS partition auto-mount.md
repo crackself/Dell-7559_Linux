@@ -1,7 +1,7 @@
-### Test in Archlinux, with thunar
-
-### need:
+### Archlinux, with thunar
     thunar thunar-volman gvfs ntfs-3g udisds polkit
+
+### Gentoo, with dolphin will auto install dependes
 
 ### mount a disk to findout deamon name:
     udisksctl mount -b /dev/sdb2
