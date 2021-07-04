@@ -1,4 +1,15 @@
-# exec dbus-launch --exit-with-session startplasma-x11    # start plasma
-feh --bg-fill --randomize  ~/photo/* &                    # set wallpaper image from ~/photo/
-exec slstatus &                                           # start slstatus bar
+# exec dbus-launch --exit-with-session startplasma-x11
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --output eDP-1-1 --set "PRIME Synchronization" 1    #设置垂直同步。<output>替换为你的显示器名称，可以通过执行xrandr命令查看输出结果，会列出电脑支持的所有显示器名称，如DP-0、DP-1、eDP-1-1、HDMI-1-1等；找出后面跟有“connected“字样的显示器名称，我们需要的就是这个，用它替换<output>。若想再次开启垂直同步，只需把参数从0改为1即可。
+export LANG=zh_CN.UTF-8
+export LANGUAGE=zh_CN:en_US
+export INPUT_METHOD="fcitx"
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+fcitx &
+picom -CGb &
+feh --bg-fill --randomize  ~/photo/* &
+exec slstatus &
 exec dwm
