@@ -1,4 +1,4 @@
-### 安装前准备
+### 安装前准备 (Gentoo linux)
 ```
 eselect profile set 1
   [1]   default/linux/amd64/17.1 (stable) *
