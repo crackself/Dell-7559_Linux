@@ -24,7 +24,7 @@ eselect profile set 1
     alacritty
     picom
     kwrite
-    wps-office
+    wps-office (依赖cups)
     www-cilent/firefox
     media-gfx/gimp
 
@@ -99,4 +99,5 @@ sudo mv icon.svg electron-netease-cloud-music.svg
 
 ## 预览
 ![avatar](https://github.com/crackself/Dell-7559_Linux/raw/master/dwm/image/2021-07-04-111335_1920x1080_scrot.png)
+
 ![avatar](https://github.com/crackself/Dell-7559_Linux/raw/master/dwm/image/2021-07-04-111413_1920x1080_scrot.png)
