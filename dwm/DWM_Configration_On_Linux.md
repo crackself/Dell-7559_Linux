@@ -1,5 +1,5 @@
 # 说明
-## 本文档专用记录Linux DWM 配置过程（所涉及组件参考Archlinux官方组件库）
+## 本文档专用记录Linux DWM 配置过程（所涉及组件参考Archlinux、Gentoo官方wiki）
 ### DWM及基础配套组件
     dwm dmenu alacritty(or st)
 
