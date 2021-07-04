@@ -1,3 +1,4 @@
+### 简介
 Here's something about install Linux on my dell 7559, which laptop have dual graphic cards have trouble when installing linux(kernel highter than4..0)
 for your fist installation, manjaro linux performent less problem.
 
@@ -5,3 +6,6 @@ for your fist installation, manjaro linux performent less problem.
 对于初学者来说，manjaro  linux 发行版本有利于实践操作，能减少很多麻烦。
 
 本仓库记录Archlinux、Gentoo安装简要步骤及相关桌面环境、窗口管理器安装配置
+
+### Gentoo DWM预览：
+![avatar](https://github.com/crackself/Dell-7559_Linux/raw/master/dwm/image/2021-07-04-111413_1920x1080_scrot.png)
