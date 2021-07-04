@@ -1,19 +1,22 @@
 # 说明
 ## 本文档专用记录Linux DWM 配置过程（所涉及组件参考Archlinux官方组件库）
 ### DWM及基础配套组件
-    dwm dmenu st
-### 笔记本音量控制及屏幕亮度快捷键设置
+    dwm dmenu alacritty(or st)
+
 #### 基本组件要求:
-    
     X11图形服务:  xorg-server xorg-xinitrc libxft xf86-video-intel
     声音控制: alsa-utils  pulseaudio pulseaudio-alsa (可选pulseaudio-jack)  
         # pulseaudio 配合pactl set-sink-mute 0 toggle可同时控制耳机静音
       二合一耳机插口:pulseaudio-jack
-    背光控制: xorg-xbacklight
+    背光控制: acpilight （xorg-xbacklight不推荐） 
 ### 字体要求：
         media-fonts/fontawesome
         ttf-nerd-fonts-symbols
         对应的图标字体https://www.nerdfonts.com/cheat-sheet
+
+
+### gentoo
+    emerge --ask xorg-server xinit sys-power/acpilight dbus dwm dmenu
 #### dwm 源码修改
 #####  config.def.h：
         /* See LICENSE file for copyright and license details. */
