@@ -8,7 +8,7 @@ eselect profile set 1
     xrandr
     xorg-server
     xinit
-    x11-apps/xbacklight     # replace xbacklight
+    sys-power/acpilight     # replace xbacklight
     dwm
     dmenu
     slstatus (手动编译安装)
