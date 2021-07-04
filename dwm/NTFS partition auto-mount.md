@@ -3,7 +3,7 @@
 
 ### Gentoo, with dolphin will auto install dependes
 
-### mount a disk to findout deamon name:
+### mount a disk to find out deamon name:
     udisksctl mount -b /dev/sdb2
 such as `org.freedesktop.udisks2.filesystem-mount-system`
 
