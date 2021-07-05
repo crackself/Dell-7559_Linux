@@ -1,2 +1,3 @@
 media-libs/phonon -vlc
 media-gfx/feh -xinerama
+media-video/ffmpeg openssl network   #使ffmpeg支持网络播放
