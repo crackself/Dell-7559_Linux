@@ -24,7 +24,7 @@ eselect profile set 1
     alacritty
     picom
     kwrite
-    wps-office (依赖cups)
+    wps-office (emerge --ask --autounmask=y --autounmask-write wps-office)
     www-cilent/firefox
     media-gfx/gimp
 
