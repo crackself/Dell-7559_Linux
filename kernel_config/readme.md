@@ -9,6 +9,9 @@
     
 `sed -i '/select DEBUG_KERNEL/d' /usr/src/linux/init/Kconfig`
 
+#### 配置选项
+`make menuconfig CC=clang HOSTCC=clang`
+        
 #### 使用Clang编译:
     
 `make -j4 CC=clang HOSTCC=clang`
