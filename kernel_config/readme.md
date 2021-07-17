@@ -2,6 +2,9 @@
     
 `tar -xf linux-5.13.2.tar.xz /usr/src/linux`
     
+#### 清理旧文件
+`make mrproper`
+        
 #### 取消`kernel debug`选项:
     
 `sed -i '/select DEBUG_KERNEL/d' /usr/src/linux/init/Kconfig`
