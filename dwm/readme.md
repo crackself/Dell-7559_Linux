@@ -3,6 +3,8 @@
 eselect profile set 1
   [1]   default/linux/amd64/17.1 (stable) *
 ```
+### 硬件基本组件
+    acpi
 ### 图形显示组件
     x11-apps：
     xrandr
@@ -22,9 +24,8 @@ eselect profile set 1
     feh     # set desktop wall paper
     mpv
     alacritty
-    picom
     kwrite
-    wps-office (emerge --ask --autounmask=y --autounmask-write wps-office)
+    wps-office
     www-cilent/firefox
     media-gfx/gimp
 
@@ -43,7 +44,6 @@ eselect profile set 1
  
 ### 网络管理组件
     dhcpcd
-    networkmanerge(KDE桌面建议)
 
 #### 暂时关闭emerge的文件校验功能以修改dwm源码安装
     nano /etc/portage/make.conf
@@ -54,16 +54,25 @@ eselect profile set 1
 
 ### 可选功能
 #### KDE桌面组件
-    kde-plasma：
+#### kde-plasma：
     plasma-destop
-    plasma-nm
-    plasma-pa
+    plasma-nm（需要NetworkManager）
+#### Plasma 音量控制
+    plasma-kmix(不需要pulseaudio)
+    plasma-pa（需要pulseaudio）
+#### 系统管理
     powerdevil
     bluedevil
     plasma-systemmonitor
     systemsettings
-    
-    app-i18n/kcm-fcitx
+    htop
+
+### DW1560特殊驱动
+#### WIFI
+    net-wireless/broadcom-sta
+#### 蓝牙
+    sys-firmware/broadcom-bt-firmware
+
 ##### 安装网易云音乐
     依赖：net-print/cups
     https://github.com/Rocket1184/electron-netease-cloud-music/
