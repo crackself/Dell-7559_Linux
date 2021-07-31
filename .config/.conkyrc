@@ -1,0 +1,103 @@
+conky.config = {
+    alignment = 'top_left',
+    background = true,
+    border_width = 0.5,
+    cpu_avg_samples = 4,
+    default_color = 'white',
+    default_outline_color = 'grey',
+    default_shade_color = 'black',
+    draw_borders = true,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Noto Sans CJK SC:size=10',
+    gap_x = 5,
+    gap_y = 50,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    double_buffer = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_colour = '000000',
+    own_window_class = 'Conky',
+    own_window_argb_visual = true,
+    own_window_type = 'dock',
+    own_window_transparent = true,
+    own_window_argb_value = 192,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    stippled_borders = 0,
+    update_interval = 1,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false
+}
+
+conky.text = [[
+${font Latin Modern Mono Caps:bold:size=18}${alignc}${color purple}$nodename
+# 日期
+${font Noto Sans CJK SC:Bold:size=12}${color orange}日期 ${hr 2}$color
+${offset 15}${font Noto Sans CJK SC:Bold:size=12}${color purple}${time %Y-%m-%d %A  %H:%M:%S}
+#${font DejaVu Sans Mono:size=9}${execpi 1800 DA=`date +%_d`; cal | sed s/"\(^\|[^0-9]\)$DA"'\b'/'\1${color orange}'"$DA"'$color'/}
+#
+# 文件系統
+${font Noto Sans CJK SC:Bold:size=12}${color green}磁盘用量 ${hr 1}
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color}位置 ${alignr}可用          已用
+${offset 15}${color}root (${fs_type /}) ${color yellow}${alignr}${fs_free /} ${fs_used /}
+${offset 15}${color }${fs_size /} ${alignc}${color yellow}${fs_bar 4 /}
+#${offset 15}${color FFFDE2}home (${fs_type /home}) ${color yellow}${alignr}${fs_free /home/} ${fs_used /home/}
+#${offset 15}${color yellow}${fs_size /home/} $color${fs_bar 4 /home/}
+#
+# CPU
+#
+${font Noto Sans CJK SC:Bold:size=12}${color green}系统监控 ${hr 2}${font}
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color FFFDE2}运行时间 ${alignr}$color $uptime
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color FFFDE2}内存 :$color $mem $memperc% ${color yellow}${membar 4}
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color FFFDE2}电池: ${battery_percent BAT0}% ${color yellow}${alignr}${battery_bar 4, 130 BAT0}
+${offset 15}${font DejaVu Sans Mono:size=8}${battery_time BAT0}${font DejaVu Sans Mono:size=8}${color FFFDE2}
+${font Noto Sans CJK SC:Bold:size=10}${color green}处理器 ${hr 1}
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color FFFDE2}总进程数:$color $processes  ${color FFFDE2} ${alignc}运行中:$color $running_processes ${alignr}${color yellow}温度: ${i8k_cpu_temp}°C
+${offset 15}${font DejaVu Sans Mono:size=9}${color white} $cpu% ${color red}${cpubar 6}
+${offset 15}${color yellow}${cpugraph F600AA 5000a0}${color}
+${offset 15}Core 1   ${color ff8300}${cpubar cpu1 6}${color FFFDE2}
+${offset 15}Core 2   ${color ff8300}${cpubar cpu2 6}${color FFFDE2}
+${offset 15}Core 3   ${color ff8300}${cpubar cpu3 6}${color FFFDE2}
+${offset 15}Core 4   ${color ff8300}${cpubar cpu4 6}${color FFFDE2}
+#
+# 网络
+#LAN
+${font Noto Sans CJK SC:Bold:size=12}${color green}网络 ${hr 1}${font DejaVu Sans Mono:size=9}
+${offset 15}${font Noto Sans CJK SC:Bold:size=8}${color}IPv4地址 ${color white}${alignr}${addr enp4s0}
+${offset 15}${font Noto Sans CJK SC:Bold:size=10}${color green}下载  ${color yellow}${alignr}上传
+${offset 15}${color green}${font}▼ $color${totaldown enp4s0} ${alignr}${color yellow}▲ $color${totalup enp4s0}
+${offset 15}${color green}${font}▼ $color${downspeed enp4s0} ${alignr}${color yellow}▲ $color${upspeed enp4s0}
+${offset 15}${color black}${downspeedgraph enp4s0 32,120 ADFFE9 FF972E}${color black}${upspeedgraph enp4s0 32,120 0000ff ff0000}
+#
+#WLAN
+#${offset 5}${font Noto Sans CJK SC:Bold:size=12}${color orange}${wireless_essid wlp5s0}  ${stippled_hr 1}
+#${offset 15}${color}${font DejaVu Sans Mono:size=9}WiFi ${alignr}${wireless_link_qual_perc wlp5s0}%(${wireless_link_qual wlp5s0}/${wireless_link_qual_max wlp5s0}) ${color red}${addr wlp5s0}
+${offset 15}${color}${font DejaVu Sans Mono:size=9}WiFi ${alignc}${color orange} ${wireless_mode wlp5s0} ${wireless_essid wlp5s0} ${color yellow}${wireless_bitrate wlp5s0}
+${offset 15}${font}${color green}▼ $color${totaldown wlp5s0} ${alignr}${color green}▲ $color${totalup wlp5s0}
+${offset 15}${color green}${font}▼ $color${downspeed wlp5s0} ${alignr}${color green}▲ $color${upspeed wlp5s0}
+${offset 15}${color black}${downspeedgraph wlp5s0 32,120 ADFFE9 FF972E}${color black}${upspeedgraph wlp5s0 32,120 0000ff ff0000}
+#
+# Fans
+${font Noto Sans CJK SC:Bold:size=12} ${color green} 散热器 ${hr 1}
+${offset 15}${font Entopia:bold:size=10}CPU ${alignr}GPU
+${offset 15}${font Entopia:bold:size=10}${i8k_left_fan_status}: ${i8k_left_fan_rpm} ${alignr}${i8k_right_fan_status}: ${i8k_right_fan_rpm}
+#
+# 进程
+${font Noto Sans CJK SC:Bold:size=12}${color green}进程 ${hr 2}
+${offset 15}${font Noto Sans CJK SC:Regular:size=8}${color EDE0FF}名称               ${alignr}PID   CPU%   MEM%
+${offset 15}${color FF7878}${top name 1} ${alignr}${top pid 1} ${top cpu 1} ${top mem 1}
+${offset 15}${color FF7878}${top name 2} ${alignr}${top pid 2} ${top cpu 2} ${top mem 2}
+${offset 15}${color FF7878}${top name 3} ${alignr}${top pid 3} ${top cpu 3} ${top mem 3}
+${offset 15}${color FF7878}${top name 4} ${alignr}${top pid 4} ${top cpu 4} ${top mem 4}
+#
+# i8k
+
+]]
