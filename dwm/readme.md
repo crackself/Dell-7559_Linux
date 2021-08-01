@@ -91,7 +91,7 @@ eselect profile set 1
     Comment[zh_CN]=网易云音乐非官方客户端
     Comment[zh_TW]=網易雲音樂非官方用戶端
     Icon=electron-netease-cloud-music
-    Exec=/usr/local/bin/electron-netease-cloud-music/electron-netease-cloud-music
+    Exec=/usr/local/bin/electron-netease-cloud-music
     Categories=AudioVideo;Player;
     EOF
 
