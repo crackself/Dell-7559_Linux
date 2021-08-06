@@ -1,5 +1,6 @@
 ### something need to know:
-- BroadCom BCM94352Z wireless driver: Broadcom-sta (broadcom-wl)
+- BroadCom BCM94352Z wireless driver: `broadcom-sta`
+- Bluetooth firmware: `broadcom-bt-firmware`, Bluetooth audio need pulseaudio
 - ebuild source location is usr/portage/distfiles rise up affter `emerge-webrsync`
 
 ### Prepar ebuild
