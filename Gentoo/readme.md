@@ -1,22 +1,11 @@
-### something need to know:
-- BroadCom BCM94352Z wireless driver: `broadcom-sta`
-- Bluetooth firmware: `broadcom-bt-firmware`, Bluetooth audio need pulseaudio
-- ebuild source location is usr/portage/distfiles rise up affter `emerge-webrsync`
+### stage3文件准备
+`cd /mnt/gentoo`
+`tar vxpf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner` or `tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
 
-### Prepar ebuild
-#### get stage3 tarball and extra into your Dir.
+### 添加镜像源（可选）
+`mkdir /mnt/gentoo/etc/portage/repos.conf`
+`nano /mnt/gentoo/etc/portage/repos.conf/gentoo.conf`
 ```
-cd /mnt/gentoo
-tar vxpf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner
-or
-tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
-```
-
-### setting mirror
-```
-mkdir /mnt/gentoo/etc/portage/repos.conf
-nano /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-
 [gentoo]
 location = /usr/portage
 sync-type = rsync
@@ -24,31 +13,37 @@ sync-uri = rsync://rsync.mirrors.ustc.edu.cn/gentoo-portage/
 auto-sync = yes
 ```
 
-#### Edit make.conf
+#### 设置portage make.conf
+
+`nano /mnt/gentoo/etc/portage/make.conf`
 ```
-nano /mnt/gentoo/etc/portage/make.conf
 # These settings were set by the catalyst build script that automatically
 # built this stage.
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
-COMMON_FLAGS="-march=native -O2 -pipe"
+COMMON_FLAGS="-march=native -O2 -pipe -finline-functions -fomit-frame-pointer"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-MAKEOPTS="-j3"
+#LDFLAGS="${COMMON_FLAGS} -Wl,-O2 -Wl,--as-needed -Wl,--hash-style=gnu -Wl,--sort-common -Wl,--strip-all"
+
+MAKEOPTS="-j4"
+#NINJAOPTS="-j$(makeopts_jobs) -l$(makeopts_loadavg "${MAKEOPTS}" 0)"
+NINJAOPTS="-j3"
 
 CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3"
 CHOST="x86_64-pc-linux-gnu"
 
-del="-bindist -debug -doc -test -handbook -nls -accessibility -mdev -consolekit -dhcpcd -netifrc -oss -gpm -iptables -bluetooth -pulseaudio"
+del="-busybox -bindist -debug -doc -test -handbook -nls -accessibility -mdev -consolekit -netifrc -oss -gpm -iptables -bluetooth -pulseaudio -vlc"
 kde="-gnome-shell -gnome -gnome-keyring -gtk -systemd kde"
 dwm="-gnome-shell -gnome -gnome-keyring -gtk -systemd -kde -qt4 -qt5"
 base="lm-sensors udev icu minizip blkid acpi dbus policykit elogind udisks http2"
-add="iwd wifi ppp dhclient networkmanager usb alsa audio sudo git"
+add="bluetooth iwd wifi ppp dhcpcd nftable networkmanager usb alsa audio sudo git"
 desktop="X cjk jack vdpau vaapi"
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
-USE="${del} ${dwm} ${base} ${add} ${desktop}"
+dev="fortran lto pgo graphite openmp"
+USE="${del} ${kde} ${base} ${add} ${media} ${dev} ${desktop}"
 
 VIDEO_CARDS="intel i965 iris nvidia"
 ALSA_CARDS="hda-intel"
@@ -58,7 +53,7 @@ ACCEPT_LICENSE="*"
 ACCEPT_KEYWORDS="~amd64"
 
 L10N="en-US zh-CN en zh"
-AUTO_CLEAN="yes"
+#AUTO_CLEAN="yes"
 
 LLVM_TARGETS="X86"
 
@@ -70,9 +65,11 @@ PKGDIR="/var/cache/binpkgs"
 # This sets the language of build output to English.
 # Please keep this setting intact when reporting bugs.
 LC_MESSAGES=C
+
+#FEATURES="-strict -assume-digests -sign"
 ```
 
-### 进入新环境
+### 切换root环境
 ```
 mount --types proc /proc /mnt/gentoo/proc
 mount --rbind /sys /mnt/gentoo/sys
@@ -94,18 +91,17 @@ chroot /mnt/gentoo /bin/bash && source /etc/profile && export PS1="(chroot) ${PS
 ```
 
 ### EFI partition mount on /boot/efi
+`mkdir /boot/efi`
 `mount /dev/sda1 /boot/efi`
 
-### config and build system
-
+### 配置基本系统
 ```
 emerge-webrsync
-emerge --sync {Not neceesary}
 
 eselect profile list
-eselect profile set 20   # 20 mark ad kde-plasma/systemd
+eselect profile set 1   # 1 以最小USE，配合自定的make.conf即可
 
-emerge --ask --verbose --update --deep --newuse @world
+emerge --ask --verbose --update --deep --newuse @world （emerge -avuDN @world）
 
 echo "Asia/Shanghai" > /etc/timezone
 emerge --config sys-libs/timezone-data
@@ -114,6 +110,7 @@ nano -w /etc/locale.gen
 locale-gen
 eselect locale list
 eselect locale set X
+
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
 ```
 ### 配置Linux内核
@@ -136,11 +133,10 @@ nano -w /etc/fstab
 `blkid` for display partition's UUID
 when using UUID, replace `/dev/sdaX` by `UUID=xxx-xxxx`
 
-### install GRUB UEFI bootloader
+### 安装GRUB引导
 #### need to mount EFI partiton on `/boot/efi`
 ```
-mount /dev/sda1 /boot/efi
-emerge --ask --verbose sys-boot/grub:2 sys-boot/os-prober
+emerge --ask --verbose sys-boot/grub sys-boot/os-prober
 ```
 #### For UEFI:
 ```
@@ -154,14 +150,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-### Manage Users
+### 添加用户账户
 ```
 passwd root
 
-useradd -m -G users,wheel,portage,usb,video [your user name]
+useradd -m -G users,wheel,portage,usb,video,plugdev [your user name]
 passwd [your user name]
 ```
-### Setting Host name
+### 设置主机名
 ```
 nano -w /etc/conf.d/hostname
 # 设置主机名变量，选择主机名
@@ -183,27 +179,32 @@ locale-gen
 eselect locale list
 eselect locale set X
 ```
+### DW1560特别驱动:
+- BroadCom BCM94352Z wireless driver: `broadcom-sta`
+- Bluetooth firmware: `broadcom-bt-firmware`, Bluetooth audio need pulseaudio
+```
+emerge --ask broadcom-sta broadcom-bt-firmware
+```
+### 精简安装KDE Plasma桌面
+```
+emerge --ask xorg-server xinit kde-plasma/plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin kconsole wqy-microhei
+```
+### KDE组件
+plasma-kmix、plasma-pa：KDE音频管理，两者功能相似，但前者不依赖pulseaudio
+使用蓝牙音频推荐pulseaudio
+pulseaudio无法在root用户环境开启
 
-### Install specially Wireless Driver for BCM94352Z
-```
-emerge --ask broadcom-sta iw wpa_supplicant dialog
-```
-### Install base Desktop(Optional)
-```
-emerge --ask xorg-server xinit kde-plasma/plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-kmix(或者plasma-pa) kde-apps/dolphin alacritty wqy-microhei
-```
-
-### Install FULL KDE-PLASMA Desktop(Optional)
+### 安装全套KDE Plasma桌面
 `emerge --ask kde-plasma/plasma-meta`
 
-### exit and umount
+### 退出ch-root环境
 ```
 退出chroot环境并unmount全部已持载分区：
 exit && umount -l /mnt/gentoo/dev{/shm,/pts,} && umount -R /mnt/gentoo
 ```
 
 
-Build Gentoo Kernel on VPS(KVM machine)
+VPS(KVM machine) 内核模块需求
 --
 ```
 cd /usr/src/linux
