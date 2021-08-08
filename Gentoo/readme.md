@@ -1,9 +1,11 @@
 ### stage3文件准备
-`cd /mnt/gentoo`
-`tar vxpf stage3-*.tar.bz2 --xattrs-include='*.*' --numeric-owner` or `tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
+下载stage3压缩包https://www.gentoo.org/downloads/
+      
+`cd /mnt/gentoo`     
+`tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner`
 
 ### 添加镜像源（可选）
-`mkdir /mnt/gentoo/etc/portage/repos.conf`
+`mkdir /mnt/gentoo/etc/portage/repos.conf`      
 `nano /mnt/gentoo/etc/portage/repos.conf/gentoo.conf`
 ```
 [gentoo]
@@ -90,7 +92,7 @@ mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys 
 chroot /mnt/gentoo /bin/bash && source /etc/profile && export PS1="(chroot) ${PS1}"
 ```
 
-### EFI partition mount on /boot/efi
+### 挂载EFI分区
 `mkdir /boot/efi`
 `mount /dev/sda1 /boot/efi`
 
