@@ -89,7 +89,8 @@ or by one line:
 ```
 mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys && mount --make-rslave /mnt/gentoo/sys && mount --rbind /dev /mnt/gentoo/dev && mount --make-rslave /mnt/gentoo/dev
 
-chroot /mnt/gentoo /bin/bash && source /etc/profile && export PS1="(chroot) ${PS1}"
+chroot /mnt/gentoo /bin/bash
+source /etc/profile && export PS1="(chroot) ${PS1}"
 ```
 
 ### 挂载EFI分区
@@ -205,6 +206,10 @@ pulseaudio无法在root用户环境开启
 exit && umount -l /mnt/gentoo/dev{/shm,/pts,} && umount -R /mnt/gentoo
 ```
 
+### 开机内核pkcs8_key_parse加载报错
+屏蔽模块自动加载 /usr/lib/modules-load.d/pkcs8.conf
+### 还原备份系统后无法解锁屏幕
+重新安装pam emerge -a pam
 
 VPS(KVM machine) 内核模块需求
 --
