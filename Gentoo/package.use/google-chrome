@@ -1,0 +1,5 @@
+# required by net-print/cups-filters-1.28.9::gentoo[postscript]
+# required by net-print/cups-2.3.3_p2-r2::gentoo
+# required by www-client/google-chrome-92.0.4515.107::gentoo
+# required by google-chrome (argument)
+>=app-text/ghostscript-gpl-9.54.0 cups

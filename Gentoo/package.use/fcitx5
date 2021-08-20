@@ -1,0 +1,3 @@
+# required by app-i18n/fcitx5-configtool-5.0.5::gentoo-zh
+# required by app-i18n/fcitx5-configtool (argument)
+>=app-i18n/fcitx5-qt-5.0.6 qt5

@@ -1,0 +1,10 @@
+www-client/firefox -wifi
+# required by www-client/firefox-90.0.2::gentoo
+# required by firefox (argument)
+>=media-libs/libpng-1.6.37-r2 apng
+# required by www-client/firefox-90.0.2::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.10.0 postproc
+# required by www-client/firefox-90.0.2::gentoo[pgo]
+# required by firefox (argument)
+>=x11-base/xorg-server-1.20.12 xvfb

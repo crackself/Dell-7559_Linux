@@ -1,0 +1,5 @@
+kde-apps/okular djvu epub mobi
+
+# required by kde-apps/okular-21.04.3-r2::gentoo[pdf]
+# required by okular (argument)
+>=app-text/poppler-21.07.0 nss qt5

@@ -1,0 +1,4 @@
+# required by media-sound/pulseaudio-15.0::gentoo[alsa,alsa-plugin]
+# required by kde-plasma/plasma-pa-5.22.4::gentoo
+# required by plasma-pa (argument)
+>=media-plugins/alsa-plugins-1.2.2 pulseaudio

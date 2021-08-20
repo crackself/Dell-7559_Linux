@@ -1,0 +1,4 @@
+app-admin/conky hddtemp intel-backlight weather-metar nvidia iconv iostats ipv4 truetype wifi bundled-toluapp lua-cairo lua-imlib
+
+# required by conky (argument)
+>=x11-drivers/nvidia-drivers-470.57.02 static-libs

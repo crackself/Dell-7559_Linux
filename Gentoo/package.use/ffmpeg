@@ -1,0 +1,10 @@
+media-video/ffmpeg openssl network vaapi vdpau encode cuda webp openh264 vaapi vdpau vpx x264 x265 pulseaudio
+# required by media-video/ffmpeg-4.4-r1::gentoo[cuda]
+# required by @selected
+# required by @world (argument)
+>=sys-devel/clang-12.0.1 llvm_targets_NVPTX
+# required by sys-devel/clang-12.0.1::gentoo[llvm_targets_NVPTX]
+# required by media-video/ffmpeg-4.4-r1::gentoo[cuda]
+# required by @selected
+# required by @world (argument)
+>=sys-devel/llvm-12.0.1 llvm_targets_NVPTX

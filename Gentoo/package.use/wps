@@ -1,0 +1,2 @@
+app-office/wps-office -alsa-plugin -pulseaudio -alsa
+media-plugins/alsa-plugins -pulseaudio
