@@ -1,3 +1,7 @@
+#### 安装内核到
+5.14.9 以上均默认去除`early print`
+*-vm 配置文件开启qemu
+其它为缺省配置
 #### 安装内核到`/usr/src/`:
     
 `tar -xf linux-5.13.2.tar.xz /usr/src/linux`
@@ -9,10 +13,9 @@
     
 `sed -i '/select DEBUG_KERNEL/d' /usr/src/linux/init/Kconfig`
 
-#### 配置选项
+#### 配置选项，使用Clang编译:
 `make menuconfig CC=clang HOSTCC=clang`
         
-#### 使用Clang编译:
     
 `make -j4 CC=clang HOSTCC=clang`
 
