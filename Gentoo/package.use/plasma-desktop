@@ -1,0 +1,16 @@
+# required by kde-plasma/plasma-workspace-5.22.5-r2::gentoo
+# required by kde-plasma/plasma-desktop-5.22.5::gentoo
+# required by plasma-desktop (argument)
+>=kde-frameworks/prison-5.86.0 qml
+# required by kde-plasma/kwin-5.22.5::gentoo
+# required by kde-plasma/libkworkspace-5.22.5::gentoo
+# required by kde-plasma/plasma-workspace-5.22.5-r2::gentoo
+# required by kde-plasma/plasma-desktop-5.22.5::gentoo
+# required by plasma-desktop (argument)
+>=media-libs/mesa-21.2.2 wayland
+# required by kde-plasma/kwin-5.22.5::gentoo
+# required by kde-plasma/libkworkspace-5.22.5::gentoo
+# required by kde-plasma/plasma-workspace-5.22.5-r2::gentoo
+# required by kde-plasma/plasma-desktop-5.22.5::gentoo
+# required by plasma-desktop (argument)
+>=kde-frameworks/kitemmodels-5.86.0 qml
