@@ -39,13 +39,16 @@ CHOST="x86_64-pc-linux-gnu"
 
 del="-busybox -bindist -debug -doc -test -handbook -nls -accessibility -mdev -consolekit -netifrc -oss -gpm -iptables -bluetooth -pulseaudio -vlc"
 kde="-gnome-shell -gnome -gnome-keyring -gtk -systemd kde"
-dwm="-gnome-shell -gnome -gnome-keyring -gtk -systemd -kde -qt4 -qt5"
+dwm="-gnome-shell -gnome -gnome-keyring -gtk -gtk2 -gtk3 -systemd -kde -qt4 -qt5"
+gnome="-qt4 -qt5 -kde -systemd gtk gnome"
+lumina="-gnome-shell -gnome -gnome-keyring -systemd -kde"
 base="lm-sensors udev icu minizip blkid acpi dbus policykit elogind udisks http2"
 add="bluetooth iwd wifi ppp dhcpcd nftable networkmanager usb alsa audio sudo git"
-desktop="X cjk jack vdpau vaapi"
+#desktop="X cjk jack vdpau vaapi wayland"
+desktop="X cjk jack vdpau vaapi wayland gles2"
 Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
 dev="fortran lto pgo graphite openmp"
-USE="${del} ${kde} ${base} ${add} ${media} ${dev} ${desktop}"
+USE="${del} ${dwm} ${base} ${add} ${media} ${dev} ${desktop}"
 
 VIDEO_CARDS="intel i965 iris nvidia"
 ALSA_CARDS="hda-intel"
@@ -53,11 +56,12 @@ INPUT_DEVICES="libinput"
 GRUB_PLATFORMS="efi-64"
 ACCEPT_LICENSE="*"
 ACCEPT_KEYWORDS="~amd64"
+#UNITY_GLOBAL_KEYWORD_UNMASK=yes
 
 L10N="en-US zh-CN en zh"
 #AUTO_CLEAN="yes"
 
-LLVM_TARGETS="X86"
+#LLVM_TARGETS="X86"
 
 # NOTE: This stage was built with the bindist Use flag enabled
 PORTDIR="/var/db/repos/gentoo"
