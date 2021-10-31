@@ -209,33 +209,41 @@ pulseaudio无法在root用户环境开启
 退出chroot环境并unmount全部已持载分区：
 exit && umount -l /mnt/gentoo/dev{/shm,/pts,} && umount -R /mnt/gentoo
 ```
-
+## 常见问题解决
 ### 开机内核pkcs8_key_parse加载报错
-屏蔽模块自动加载 /usr/lib/modules-load.d/pkcs8.conf
-### 还原备份系统后无法解锁屏幕
-重新安装pam `emerge -a pam`
+屏蔽模块自动加载
+      /usr/lib/modules-load.d/pkcs8.conf
 
+### 还原备份系统后无法解锁屏幕
+重新安装pam：
+      emerge -a pam
 
 ### 安装SDDM无法启动，只显示黑屏和鼠标
-按照`/var/log/sddm.log`的错误，需要创建`/var/lib/sddm`目录        
-`sudo mkdir /var/lib/sddm`
+      按照`/var/log/sddm.log`的错误，需要创建`/var/lib/sddm`目录
+      sudo mkdir /var/lib/sddm
+
+###  屏幕亮度重启后无法保存
+      emerge --ask acpilight
+      rc-service acpilight start
+      rc-service acpilight restart
+      rc-update add acpilight boot
 
 ### qemu TPM2.0模拟及硬件直通
-`均需使用带vm或带qemu的内核配置文件`
+均需使用带vm或带qemu的内核配置文件
 安装qemu及图形化管理(virt-manager需要开启gtk USE)：
-`sudo emerge --ask app-emulation/qemu app-emulation/virt-manager app-crypt/swtpm`
+      sudo emerge --ask app-emulation/qemu app-emulation/virt-manager app-crypt/swtpm
 QEMU模拟TPM2.0需要安装wtpm          
 硬件直通需要解除主系统对硬件的使用（虚拟机独占）
 
 ### wayland 支持
-修改`/etc/portage/make.conf` 添加`wayland gles2` USE标记
-`desktop="X cjk jack vdpau vaapi wayland gles2"`
+修改`/etc/portage/make.conf` 添加`wayland gles2` USE标记:
+      desktop="X cjk jack vdpau vaapi wayland gles2"
 
 ### KDE Plasma系统主题美化
-全局主题：WhiteSur-kde(https://github.com/vinceliuice/WhiteSur-kde)          
-图标主题：WhiteSur-icon-theme(https://github.com/vinceliuice/WhiteSur-kde)         
-软件：Latte Dock(Dock状态栏)、Kvantum（全局主题调整）          
-`emerge --ask kde-misc/latte-dock x11-themes/kvantum`
+      全局主题：WhiteSur-kde(https://github.com/vinceliuice/WhiteSur-kde)          
+      图标主题：WhiteSur-icon-theme(https://github.com/vinceliuice/WhiteSur-kde)         
+      软件：Latte Dock(Dock状态栏)、Kvantum（全局主题调整）          
+      emerge --ask kde-misc/latte-dock x11-themes/kvantum
 
 ### VPS(KVM machine) 内核模块需求(推荐VPS参考)
 
