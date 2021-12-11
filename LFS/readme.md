@@ -24,3 +24,9 @@ Intel HD Graphic: i915/skl_dmc_ver1_27.bin
                   regulatory.db.p7s
        Bluetooth:  brcm/BCM20702A0-0a5c-216f.hcd
 ```
+### How to find which is the correct firmware
+ issue `dmesg` in terminal for details
+```
+dmesg | grep firmware
+dmesg | grep error
+```
