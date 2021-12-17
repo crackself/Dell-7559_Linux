@@ -30,3 +30,36 @@ Intel HD Graphic: i915/skl_dmc_ver1_27.bin
 dmesg | grep firmware
 dmesg | grep error
 ```
+### Build QT5 with qtx11extras module
+```
+# build with x11extras
+mkdirqt5-build && cd qt5-build
+
+../configure	-prefix $QT5PREFIX		\
+		-sysconfdir /etc/xdg		\
+		-confirm-license		\
+		-opensource			\
+		-nomake examples		\
+		-skip qtwebengine		\
+		-syslog				\
+		-dbus-linked			\
+		-openssl-linked			\
+		-system-harfbuzz		\
+		-system-sqlite			&&
+make
+
+
+# x11extras will bypass when building
+./configure -prefix $QT5PREFIX                        \
+            -sysconfdir /etc/xdg                      \
+            -confirm-license                          \
+            -opensource                               \
+            -dbus-linked                              \
+            -openssl-linked                           \
+            -system-harfbuzz                          \
+            -system-sqlite                            \
+            -nomake examples                          \
+            -no-rpath                                 \
+            -syslog                                   \
+            -skip qtwebengine
+```
