@@ -180,4 +180,4 @@
 
 #### 手动设置配色方案
     cd ~/.local/share/fcitx5/themes/Material-Color
-    ln -sf ./theme-blue.conf theme.conf
+    ln -sf ./theme-deepPurple.conf theme.conf
