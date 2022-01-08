@@ -44,8 +44,9 @@
     make
     make install
 
-####  marisa
-	./configure --prefix=/usr/local --enable-native-code --disable-staic --disable-test
+####  marisa-trie
+    autoreconf -i
+    ./configure --prefix=/usr/local --enable-native-code --disable-staic --disable-test
     make
     make install
 
