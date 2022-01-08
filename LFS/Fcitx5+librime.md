@@ -7,6 +7,7 @@
     xcb-util-keysyms
     xcb-util-wm
     enchant
+    extra-cmake-modules
 
 #### 以下依赖包参照各自文档及Gentoo安装包编译，安装位置为`/usr/local`
     capnproto       # 安装后需reboot系统以确保生效
