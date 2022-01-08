@@ -57,6 +57,7 @@
     make install
 
 #### yaml-cpp
+    mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_TESTS=OFF ..
     make
     make install
