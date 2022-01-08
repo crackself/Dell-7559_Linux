@@ -9,6 +9,7 @@
     enchant
     extra-cmake-modules
     boost
+    json-c
 
 #### 以下依赖包参照各自文档及Gentoo安装包编译，安装位置为`/usr/local`
     capnproto       # 安装后需reboot系统以确保生效
