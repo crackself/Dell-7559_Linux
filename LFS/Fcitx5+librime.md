@@ -1,8 +1,9 @@
 ## BLFS系统下编译fcitx5、librime
 #### 所需依赖参考[Fcitx5官方编译说明](https://fcitx-im.org/wiki/Compiling_fcitx5)
 #### 以下依赖包参照BLFS官方文档编译，安装位置为`/usr`
-    xcb-util-image
-    xcb-util-kdepends
+    xcb-util
+    xcb-util-proto
+    xcb-util-renderutil
     xcb-util-image
     xcb-util-keysyms
     xcb-util-wm
@@ -10,6 +11,10 @@
     extra-cmake-modules
     boost
     json-c
+    ISO Codes
+    dbus
+    ECM (Extra CMake Modules)
+    gcc
 
 #### 以下依赖包参照各自文档及Gentoo安装包编译，安装位置为`/usr/local`
     capnproto       # 安装后需reboot系统以确保生效
@@ -31,87 +36,100 @@
     curl -O https://capnproto.org/capnproto-c++-0.9.1.tar.gz
     tar zxf capnproto-c++-0.9.1.tar.gz
     mkdir build & cd build	
-    ../configure --prefix=/usr/local --disable-static
+    ../configure --prefix=/usr --disable-static
     make
     make install
 
 ####  glog
+    https://github.com/google/glog.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_TESTING=OFF -DWITH_CUSTOM_PREFIX=ON -DWITH_GFLAGS=ON -DWITH_GTEST=OFF -DWITH_UNWIND=ON ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF -DWITH_CUSTOM_PREFIX=ON -DWITH_GFLAGS=ON -DWITH_GTEST=OFF -DWITH_UNWIND=ON ..
     make
     make install
 
 ####  leveldb
+    https://github.com/google/leveldb.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_SHARED_LIBS=ON -DLEVELDB_BUILD_BENCHMARKS=OFF -DLEVELDB_BUILD_TESTS=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DLEVELDB_BUILD_BENCHMARKS=OFF -DLEVELDB_BUILD_TESTS=OFF ..
     make
     make install
 
 ####  marisa-trie
+    https://github.com/s-yata/marisa-trie.git
     autoreconf -i
-    ./configure --prefix=/usr/local --enable-native-code --disable-staic --disable-test
+    ./configure --prefix=/usr --enable-native-code --disable-staic --disable-test
     make
     make install
 
 #### opencc
+    https://github.com/BYVoid/OpenCC.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_DOCUMENTATION=OFF -DENABLE_BENCHMARK=OFF -DENABLE_GTEST=OFF -DUSE_SYSTEM_GOOGLE_BENCHMARK=OFF -DUSE_SYSTEM_GTEST=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_DOCUMENTATION=OFF -DENABLE_BENCHMARK=OFF -DENABLE_GTEST=OFF -DUSE_SYSTEM_GOOGLE_BENCHMARK=OFF -DUSE_SYSTEM_GTEST=OFF ..
     make
     make install
 
 #### yaml-cpp
+    https://github.com/jbeder/yaml-cpp.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_TESTS=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_TESTS=OFF ..
     make
     make install
 
 #### expat
+    https://github.com/libexpat/libexpat.git
     mkdir build && cd build
-    ../configure --prefix=/usr/local --disable-static --disable-test
+    ../configure --prefix=/usr --disable-static --disable-test
     make
     make install
 
 #### fmt
+    https://fmt.dev/latest/index.html
+    https://github.com/fmtlib/fmt.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_SHARED_LIBS=TRUE ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE ..
     make
     make install
 
 #### xcb-imdkit
+    https://github.com/fcitx/xcb-imdkit.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_SHARED_LIBS=TRUE ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE ..
     make
     make install
 
 #### librime
+    https://github.com/rime/librime.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBOOST_USE_CXX11=ON -DBUILD_TEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Gflags=ON -DENABLE_EXTERNAL_PLUGINS=ON -DINSTALL_PRIVATE_HEADERS=ON ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBOOST_USE_CXX11=ON -DBUILD_TEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Gflags=ON -DENABLE_EXTERNAL_PLUGINS=ON -DINSTALL_PRIVATE_HEADERS=ON ..
     make
     make install
 
 #### fcitx5
+    https://github.com/fcitx/fcitx5.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DENABLE_WAYLAND=ON -DENABLE_TEST=OFF -DENABLE_ENCHANT=ON -DENABLE_X11=ON -DUSE_SYSTEMD=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_WAYLAND=ON -DENABLE_TEST=OFF -DENABLE_ENCHANT=ON -DENABLE_X11=ON -DUSE_SYSTEMD=OFF ..
     make
     make install
 
 #### fcitx5-gtk
+    https://github.com/fcitx/fcitx5-gtk.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_GTK2_IM_MODULE=ON -DENABLE_GTK3_IM_MODULE=ON -DENABLE_GTK4_IM_MODULE=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_GTK2_IM_MODULE=ON -DENABLE_GTK3_IM_MODULE=ON -DENABLE_GTK4_IM_MODULE=OFF ..
     make
     make install
 
 #### rime-data
-    # just copy rime-data into /usr/local/share
+    # just copy rime-data into /etc/rime
 
 #### fcitx5-rime
+    https://github.com/fcitx/fcitx5-rime.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_SHARED_LIBS=TRUE ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DRIME_DATA_DIR=/etc/rime ..
     make
     make install
 
