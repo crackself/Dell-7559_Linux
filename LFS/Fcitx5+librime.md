@@ -78,7 +78,9 @@
 #### expat
     https://github.com/libexpat/libexpat.git
     mkdir build && cd build
-    ../configure --prefix=/usr --disable-static --disable-test
+    (../configure --prefix=/usr --disable-static --disable-test)
+    or
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DEXPAT_BUILD_EXAMPLES=OFF -DEXPAT_BUILD_TESTS=OFF -DEXPAT_SHARED_LIBS=ON -DEXPAT_BUILD_DOCS=OFF -DEXPAT_BUILD_PKGCONFIG=ON ..
     make
     make install
 
