@@ -89,7 +89,7 @@
     https://github.com/fmtlib/fmt.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DFMT_TEST=FALSE ..
     make
     make install
 
