@@ -36,7 +36,7 @@
     curl -O https://capnproto.org/capnproto-c++-0.9.1.tar.gz
     tar zxf capnproto-c++-0.9.1.tar.gz
     mkdir build & cd build	
-    ../configure --prefix=/usr --disable-static
+    ../configure --prefix=/usr --disable-static --enable-shared
     make
     make install
 
