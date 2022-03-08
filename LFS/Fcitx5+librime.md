@@ -101,6 +101,13 @@
     make
     make install
 
+### cldr-emoji-annotation
+    https://github.com/fujiwarat/cldr-emoji-annotation.git
+    mkdir build && cd build
+    ../configure --prefix=/usr
+    make
+    make install
+    
 #### librime
     https://github.com/rime/librime.git
     mkdir build && cd build
