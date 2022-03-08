@@ -57,7 +57,7 @@
 ####  marisa-trie
     https://github.com/s-yata/marisa-trie.git
     autoreconf -i
-    ./configure --prefix=/usr --enable-native-code --disable-staic --disable-test
+    ./configure --prefix=/usr --enable-native-code --enable-shared --disable-static --disable-test
     make
     make install
 
