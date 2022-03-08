@@ -1,5 +1,12 @@
 ## BLFS系统下编译fcitx5、librime
 #### 所需依赖参考[Fcitx5官方编译说明](https://fcitx-im.org/wiki/Compiling_fcitx5)
+#### 确保已设置X环境或系统locale为非C.posx 否则部分程序无法使用 [官方说明](https://fcitx-im.org/wiki/FAQ)
+    确保安装系统中文locale：
+    localedef -i zh_CN -f UTF-8 zh_CN.UTF-8
+
+    nano ~/.xinitrc
+    export LANG="zh_CN.UTF-8"
+    export LANGUAGE="zh_CN:en_US"
 #### 以下依赖包参照BLFS官方文档编译，安装位置为`/usr`
     xcb-util
     xcb-util-proto
