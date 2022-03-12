@@ -138,6 +138,14 @@
     make
     make install
 
+#### fcitx5-qt
+    https://github.com/fcitx/fcitx5-qt.git
+    mkdir build
+    cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=no -DENABLE_QT5=qt5 ..
+    make
+    make install
+
 #### rime-data
     # just copy rime-data into /etc/rime
 
