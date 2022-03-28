@@ -25,6 +25,8 @@
     gcc
     gtk+2
     gtk+3
+    以下为非必须
+    qt5（fcitx5-qt、fcitx5-configtool需QT组件）
 
 #### 以下依赖包参照各自文档及Gentoo安装包编译，安装位置为`/usr/local`
     capnproto       # 安装后需reboot系统以确保生效
