@@ -162,7 +162,7 @@
     make install
 
 ### Fcitx5 配置文件、主题美化
-#### Fcitx5-Rime输入法配置
+#### Fcitx5-Rime输入法配置（非必须，若fcitx5在fcitx5-rime安装之前已启动，则需手动修改此配置文件，或删之后重启fcitx5）
 `nano ~/.config/fcitx5/profile`
 
     [Groups/0]
