@@ -15,6 +15,7 @@
     xcb-util-keysyms
     xcb-util-wm
     enchant
+    cmake
     extra-cmake-modules
     boost
     json-c
@@ -22,6 +23,8 @@
     dbus
     ECM (Extra CMake Modules)
     gcc
+    gtk+2
+    gtk+3
 
 #### 以下依赖包参照各自文档及Gentoo安装包编译，安装位置为`/usr/local`
     capnproto       # 安装后需reboot系统以确保生效
@@ -42,7 +45,7 @@
 ####  capnproto
     curl -O https://capnproto.org/capnproto-c++-0.9.1.tar.gz
     tar zxf capnproto-c++-0.9.1.tar.gz
-    mkdir build & cd build	
+    mkdir build && cd build	
     ../configure --prefix=/usr --disable-static --enable-shared
     make
     make install
@@ -110,6 +113,7 @@
 
 ### cldr-emoji-annotation
     https://github.com/fujiwarat/cldr-emoji-annotation.git
+    autoreconf -i
     mkdir build && cd build
     ../configure --prefix=/usr
     make
