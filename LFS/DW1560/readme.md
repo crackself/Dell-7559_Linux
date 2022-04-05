@@ -20,6 +20,7 @@
     patch -Np1 -i ./files/broadcom-sta-6.30.223.271-r5-linux-5.1.patch
     patch -Np1 -i ./files/broadcom-sta-6.30.223.271-r5-linux-5.6.patch
     patch -Np1 -i ./files/broadcom-sta-6.30.223.271-r6-linux-5.9.patch
+    patch -Np1 -i ./files/broadcom-sta-6.30.223.271-r6-linux-5.17.patch
 ### build and install
     make -C /lib/modules/`uname -r`/build M=$PWD
     make -C /lib/modules/`uname -r`/build M=$PWD modules_install
