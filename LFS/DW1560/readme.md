@@ -1,5 +1,7 @@
 ### Building wireless driver as External Modules
     https://www.kernel.org/doc/html/latest/kbuild/modules.html    
+### Sources link
+    https://archlinux.org/packages/community/x86_64/broadcom-wl-dkms/
 ### Need
     a working kernel sources build directory
 
