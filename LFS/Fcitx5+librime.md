@@ -149,6 +149,7 @@
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=no -DENABLE_QT5=qt5 ..
+    (cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=no -DENABLE_QT5=qt5 -DBUILD_ONLY_PLUGIN=ON ..)
     make
     make install
 
