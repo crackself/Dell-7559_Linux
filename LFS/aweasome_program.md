@@ -5,6 +5,13 @@
     make 
     make install
 
+### 系统监测工具 [xfce4-taskmanager](https://docs.xfce.org/apps/xfce4-taskmanager/start)
+    mkdir build
+    cd build
+    ../configure --prefix=/usr --disable-static --enable-shared --disable-debug --with-x
+    make 
+    make install
+
 ### Libreoffice
 不需安装postgresql
 ```
