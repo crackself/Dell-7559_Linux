@@ -52,7 +52,7 @@
     make
     make install
 
-####  glog
+####  glog (optional)
     https://github.com/google/glog.git
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF -DWITH_CUSTOM_PREFIX=ON -DWITH_GFLAGS=ON -DWITH_GTEST=OFF -DWITH_UNWIND=ON ..
@@ -125,7 +125,7 @@
 #### librime
     https://github.com/rime/librime.git
     mkdir build && cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBOOST_USE_CXX11=ON -DBUILD_TEST=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Gflags=ON -DENABLE_EXTERNAL_PLUGINS=ON -DINSTALL_PRIVATE_HEADERS=ON ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBOOST_USE_CXX11=ON -DBUILD_TEST=OFF -DENABLE_LOGGING=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Gflags=ON -DENABLE_EXTERNAL_PLUGINS=ON -DINSTALL_PRIVATE_HEADERS=ON ..
     make
     make install
 
