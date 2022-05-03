@@ -68,6 +68,36 @@ libqtxdg-3.8.0/CMakeLists.txt
 		find_package(GLIB ${GLIB_MINIMUM_VERSION} REQUIRED COMPONENTS gobject gio gio-unix-2.0))
 ```
 #### 安装cutefish组件
+#### 为方便版本管理，参照BLFSplasma5,设置cutefish安装到/opt/cutefish
+```
+cat >> /etc/profile.d/qt5.sh << "EOF" 
+# Begin /etc/profile.d/cutefish.sh
+
+# Set CFDIR directory
+CFDIR=/opt/cutefish
+
+# Adjust PATH
+pathappend $CFDIR/bin           PATH
+pathappend $CFDIR/lib/pkgconfig PKG_CONFIG_PATH
+
+export CFDIR
+
+# End /etc/profile.d/cutefish.sh
+EOF
+```
+```
+cat >> /etc/ld.so.conf << "EOF"
+# Begin cutefish addition
+
+/opt/cutefish/lib
+
+# End cutefish addition
+EOF
+```
+```
+source /etc/profile.d/cutefish.sh
+ldconfig
+```
 #### 
 ```
 cutefish_core移除synaptics
