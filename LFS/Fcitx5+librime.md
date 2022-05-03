@@ -89,6 +89,7 @@
 
 #### expat
     https://github.com/libexpat/libexpat.git
+    sources file in expat dir
     mkdir build && cd build
     (../configure --prefix=/usr --disable-static --disable-test)
     or
