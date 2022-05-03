@@ -97,7 +97,7 @@ ninja install
 #### build [mujs](https://github.com/ccxvii/mujs/)
 `make CFLANGS+="-fPIC" prefix=/usr libdir=/usr/lib install-shared`
 #### build [libblueray](https://www.videolan.org/developers/libbluray.html)
-`./configure --prefix=/usr --enable-shared --disable-tests --disable-bdjava-jar`
+`./configure --prefix=/usr --disable-static --enable-shared --disable-tests --disable-examples --disable-bdjava-jar`
 
 #### mpv-options
 ```
