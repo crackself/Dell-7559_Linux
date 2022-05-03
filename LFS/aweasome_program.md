@@ -62,12 +62,41 @@
              --disable-ldap              \
              --enable-lto
 ```
+#### mesa
+```
+patch -Np1 -i ../mesa-21.3.7-add_xdemos-1.patch
+GALLIUM_DRV="crocus,i915,iris,swrast,virgl"
+DRI_DRIVERS="i965"
+PLATFORM="x11,wayland"
+patch -Np1 -i ../mesa-21.3.7-nouveau_fixes-1.patch
+mkdir build
+cd    build
+
+meson --prefix=$XORG_PREFIX          \
+      --buildtype=release            \
+      -Ddri-drivers=$DRI_DRIVERS     \
+      -Dgallium-drivers=$GALLIUM_DRV \
+      -Dgallium-nine=false           \
+      -Dglx=dri                      \
+      -Dvalgrind=disabled            \
+      -Dlibunwind=disabled           \
+      -Dvulkan-drivers=intel         \
+      -Dplatforms=$PLATFORM          \
+      -Dgles2=enabled                \
+      ..
+
+unset GALLIUM_DRV DRI_DRIVERS PLATFORM
+
+ninja
+ninja install
+```
+
 ### MPV player
 #### required `lua-5.2` `mujs`
 #### recommonded `libblueray` 
-#### build mujs
-`ake CFLANGS+="-fPIC" prefix=/usr libdir=/usr/lib install-shared`
-#### build libblueray
+#### build [mujs](https://github.com/ccxvii/mujs/)
+`make CFLANGS+="-fPIC" prefix=/usr libdir=/usr/lib install-shared`
+#### build [libblueray](https://www.videolan.org/developers/libbluray.html)
 `./configure --prefix=/usr --enable-shared --disable-tests --disable-bdjava-jar`
 
 #### mpv-options
