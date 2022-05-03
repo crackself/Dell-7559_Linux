@@ -13,7 +13,7 @@
     make install
 
 ### Libreoffice
-不需安装postgresql
+不需安装postgresql openldap
 ```
 ./autogen.sh --prefix=$LO_PREFIX         \
              --with-parallelism=4           \
@@ -26,6 +26,8 @@
              --without-system-dicts      \
              --disable-dconf             \
              --disable-odk               \
+             --without-fonts             \
+             --without-java              \
              --enable-release-build=yes  \
              --enable-python=system      \
              --with-jdk-home=/opt/jdk    \
@@ -54,9 +56,10 @@
              --with-system-redland       \
              --with-system-serf          \
              --with-system-zlib          \
-             --disable-firebird-sdbc          \
-             --disable-postgresql-sdbc          \
-             --disable-skia          \
+             --disable-firebird-sdbc     \
+             --disable-postgresql-sdbc   \
+             --disable-skia              \
+             --disable-ldap              \
              --enable-lto
 ```
 ### MPV player
