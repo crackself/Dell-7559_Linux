@@ -26,6 +26,7 @@
     gtk+2
     gtk+3
     XKeyboardConfig
+    aspell (and dictionaries)
     以下为非必须
     qt5（fcitx5-qt、fcitx5-configtool需QT组件）
 
