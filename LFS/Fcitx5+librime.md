@@ -25,6 +25,7 @@
     gcc
     gtk+2
     gtk+3
+    XKeyboardConfig
     以下为非必须
     qt5（fcitx5-qt、fcitx5-configtool需QT组件）
 
