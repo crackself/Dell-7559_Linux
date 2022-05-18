@@ -100,5 +100,17 @@ MaximumUid=60000
 #MinimumUid=1000
 MinimumUid=0
 ```
+### sddm start dwm
+`/share/xsessions/dwm.desktop`
+```
+[Desktop Entry]
+Encoding=UTF-8
+Name=DWM
+Comment=Log in using the Dynamic Window Manager
+Exec=/usr/bin/dwm
+#Icon=/usr/bin/dwm.png
+TryExec=/usr/bin/dwm
+Type=XSession
+```
 
 - https://www.linuxfromscratch.org/blfs/view/8.1-systemd/x/sddm.html
