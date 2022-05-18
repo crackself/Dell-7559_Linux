@@ -6,6 +6,8 @@ cd    build &&
 
 cmake -DCMAKE_INSTALL_PREFIX=/usr \
       -DCMAKE_BUILD_TYPE=Release  \
+      -DDBUS_CONFIG_FILENAME="org.freedesktop.sddm.conf"  \
+      -DBUILD_MAN_PAGES=ON  \
       -Wno-dev .. &&
 make
 make install
