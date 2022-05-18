@@ -85,3 +85,6 @@ powerdevil-5.24.5.tar.xz
 bluedevil-5.24.5.tar.xz
 
 ```
+```
+[kmix](https://github.com/KDE/kmix.git)for audio control without pulseaudio
+```
