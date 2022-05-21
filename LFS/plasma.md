@@ -108,7 +108,7 @@ fd288ff836cc804e3f87dd2f5bf73350  kscreenlocker-5.24.4.tar.xz
 598ae49b82277a94c5b35ac2b22f2cee  kwayland-server-5.24.4.tar.xz
 a92ef62e3780435009e1d67623727d9e  kwin-5.24.4.tar.xz
 1756314f3b95077a4a177d6e150c0c74  plasma-workspace-5.24.4.tar.xz
-4f09f37ac7ebce792e2a12d582677370  khotkeys-5.24.4.tar.xz
+6e8da61b41691b811f0029d0692af2b8  bluedevil-5.24.4.tar.xz
 8480ee90af0592d04b8d13747c9dc984  kscreen-5.24.4.tar.xz
 fad6a3d603afffd3ef8312c58aa810a1  plasma-nm-5.24.4.tar.xz
 ac1e83397316954fb587c86d00f04591  powerdevil-5.24.4.tar.xz
