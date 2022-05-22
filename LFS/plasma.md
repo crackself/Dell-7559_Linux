@@ -97,7 +97,7 @@ while read -r line; do
 done < mini.md5
 ```
 
-## plasma5 minimal:
+## mini.md5:
 ```
 f239aaffb15592e8d35f250763de0928  kdecoration-5.24.4.tar.xz
 97ef068eddbe1d00c920192d1500dd93  libkscreen-5.24.4.tar.xz
@@ -116,6 +116,30 @@ c8209bc8147b8e556b59270af9b90666  plasma-desktop-5.24.4.tar.xz
 3ccd98acb7b5ba78c6c474cb6904e5e6  kactivitymanagerd-5.24.4.tar.xz
 51314142bc96fd1864049f0727540e5f  systemsettings-5.24.4.tar.xz
 
+```
+### mini+.md5
+```
+f239aaffb15592e8d35f250763de0928  kdecoration-5.24.4.tar.xz
+97ef068eddbe1d00c920192d1500dd93  libkscreen-5.24.4.tar.xz
+6d43b014fcf7d220653c82c9187ad238  libksysguard-5.24.4.tar.xz
+558c03416d5e97946857232ff4a205fe  breeze-5.24.4.tar.xz
+91adcae1cd632ca63d309bb2f55afbc6  layer-shell-qt-5.24.4.tar.xz
+fd288ff836cc804e3f87dd2f5bf73350  kscreenlocker-5.24.4.tar.xz
+598ae49b82277a94c5b35ac2b22f2cee  kwayland-server-5.24.4.tar.xz
+a92ef62e3780435009e1d67623727d9e  kwin-5.24.4.tar.xz
+1756314f3b95077a4a177d6e150c0c74  plasma-workspace-5.24.4.tar.xz
+6e8da61b41691b811f0029d0692af2b8  bluedevil-5.24.4.tar.xz
+8480ee90af0592d04b8d13747c9dc984  kscreen-5.24.4.tar.xz
+0ee9d2bcc73d974fb06d0ac4a0e96e11  kwallet-pam-5.24.4.tar.xz
+aae5d820d1ecd19301a23cb672c9a45a  kwayland-integration-5.24.4.tar.xz
+fad6a3d603afffd3ef8312c58aa810a1  plasma-nm-5.24.4.tar.xz
+61be40b45e827a149d964a11275d75b6  polkit-kde-agent-1-5.24.4.tar.xz
+ac1e83397316954fb587c86d00f04591  powerdevil-5.24.4.tar.xz
+c8209bc8147b8e556b59270af9b90666  plasma-desktop-5.24.4.tar.xz
+3ccd98acb7b5ba78c6c474cb6904e5e6  kactivitymanagerd-5.24.4.tar.xz
+e4707182dc0508c4fbbdf495067b7e80  plasma-integration-5.24.4.tar.xz
+263e1a645e19b6daed9743540217da8f  kde-cli-tools-5.24.4.tar.xz
+51314142bc96fd1864049f0727540e5f  systemsettings-5.24.4.tar.xz
 ```
 ### build.txt
 ```
@@ -163,4 +187,13 @@ mkdir build
 
         make
         make install
+```
+### plasma-x11 xsession file modify
+`nano /opt/kf5/share/xsessions/plasma.desktop`
+```
+[Desktop Entry]
+Type=XSession
+Exec=/opt/kf5/lib/libexec/plasma-dbus-run-session-if-needed /opt/kf5/bin/startplasma-x11
+TryExec=/opt/kf5/bin/startplasma-x11
+...
 ```
