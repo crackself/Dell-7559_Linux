@@ -22,7 +22,7 @@ useradd  -c "SDDM Daemon" \
          -d /var/lib/sddm \
          -u 64 -g sddm    \
          -s /bin/false sddm
-
+gpasswd -a sddm video
 install -v -dm755 -o sddm -g sddm /var/lib/sddm
 ```
 ### Linux PAM Configuration 
@@ -107,7 +107,8 @@ GreeterEnvironment=
 HaltCommand=/usr/bin/systemctl poweroff
 
 # Input method module
-InputMethod=qtvirtualkeyboard
+#InputMethod=qtvirtualkeyboard
+InputMethod=
 
 # Comma-separated list of Linux namespaces for user session to enter
 Namespaces=
@@ -123,7 +124,7 @@ RebootCommand=/usr/bin/systemctl reboot
 
 [Theme]
 # Current theme name
-Current=
+Current=maldives
 
 # Cursor size used in the greeter
 CursorSize=
@@ -231,7 +232,7 @@ XauthPath=/usr/bin/xauth
 XephyrPath=/usr/bin/Xephyr
 ```
 ### sddm start dwm
-`/share/xsessions/dwm.desktop`
+`/usr/share/xsessions/dwm.desktop`
 ```
 [Desktop Entry]
 Encoding=UTF-8
