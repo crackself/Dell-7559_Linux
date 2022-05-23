@@ -95,8 +95,8 @@ done < kf5-mini-5.92.0.md5
 cat > plasma-mini-5.24.4.md5 << "EOF"
 5a143b93d183e46d2d9eecb65ca32d6a  kdecoration-5.24.4.tar.xz
 25328009546df7703a45a51c27befc76  libkscreen-5.24.4.tar.xz
-127f90c5e77d404949446813baf7d61a  kscreenlocker-5.24.4.tar.xz
 7eae43606459dd0a288d5c081d9a6a2a  layer-shell-qt-5.24.4.tar.xz
+127f90c5e77d404949446813baf7d61a  kscreenlocker-5.24.4.tar.xz
 cad3dc7c0b9ca2faa9f8d25b4b2d857d  kwayland-server-5.24.4.tar.xz
 a401b80ab133740bb9c006cdf0eaedbf  kwin-5.24.4.tar.xz
 ```
@@ -143,7 +143,7 @@ done < plasma-mini-5.24.4.md5
         
 [lxqt-build-tools](https://github.com/lxqt/lxqt-build-tools)
 ```
-git clone https://github.com/lxqt/lxqt-build-tools
+git clone --depth=1 https://github.com/lxqt/lxqt-build-tools
 cd lxqt-build-tools
 mkdir build && cd build
 cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX ..
@@ -151,7 +151,7 @@ make && make install
 ```
 [libqtxdg](https://github.com/lxqt/libqtxdg)
 ```
-git clone https://github.com/lxqt/libqtxdg
+git clone --depth=1 https://github.com/lxqt/libqtxdg
 cd libqtxdg
 mkdir build && cd build
 cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX ..
