@@ -93,7 +93,7 @@ done < kf5-mini-5.92.0.md5
 (Version 5.24.4, get the lasted release from [offical](https://download.kde.org/stable/plasma/5.24.0))
 ```
 cat > plasma-mini-5.24.4.md5 << "EOF"
-5a143b93d183e46d2d9eecb65ca32d6  kdecoration-5.24.4.tar.xz
+5a143b93d183e46d2d9eecb65ca32d6a  kdecoration-5.24.4.tar.xz
 25328009546df7703a45a51c27befc76  libkscreen-5.24.4.tar.xz
 127f90c5e77d404949446813baf7d61a  kscreenlocker-5.24.4.tar.xz
 7eae43606459dd0a288d5c081d9a6a2a  layer-shell-qt-5.24.4.tar.xz
@@ -138,12 +138,15 @@ while read -r line; do
 done < plasma-mini-5.24.4.md5
 ```
 ## Build Packages outside BLFS
+`for system packages manager,we not need install into /usr`
+    
+        
 [lxqt-build-tools](https://github.com/lxqt/lxqt-build-tools)
 ```
 git clone https://github.com/lxqt/lxqt-build-tools
 cd lxqt-build-tools
 mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX ..
 make && make install
 ```
 [libqtxdg](https://github.com/lxqt/libqtxdg)
@@ -151,10 +154,13 @@ make && make install
 git clone https://github.com/lxqt/libqtxdg
 cd libqtxdg
 mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX ..
 make && make install
 ```
-#### need fix for KF5-5.91: `libqtxdg-3.8.0` whith `giounix-2.0` may failed, cause by libqtxdg import only standard system lib path
+#### need fix for KF5-5.91
+```
+libqtxdg-3.8.0 whith giounix-2.0 may failed, cause by libqtxdg import only standard system lib path
+```
 
 #### edit `src/qtxdg/xdgmimeappsglibbackend.cpp`
 
@@ -171,6 +177,17 @@ make && make install
   
 `find_package(GLIB ${GLIB_MINIMUM_VERSION} REQUIRED COMPONENTS gobject gio gio-unix-2.0`
 
+### remove synaptics support in cutefishos-core
+`only process for someone without synaptics touchpad`
+```
+cutefish_core移除synaptics
+删除synaptics相关代码，取消synaptics系统依赖
+	修改：     settings-daemon/CMakeLists.txt
+	删除：     settings-daemon/touchpad/x11/synapticstouchpad.cpp
+	删除：     settings-daemon/touchpad/x11/synapticstouchpad.h
+	修改：     settings-daemon/touchpad/x11/xlibbackend.cpp
+	修改：     settings-daemon/touchpad/x11/xlibbackend.h
+```
 ## Build cutefish
 #### Prepar sources
 ##### list as the base minimal working Desktop Envirment, other program need more test
@@ -192,7 +209,8 @@ git clone --depth=1 https://github.com/cutefishos/screenshot.git
 git clone --depth=1 https://github.com/cutefishos/screenlocker.git
 ```
 
-#### Compile and install
+### Compile and install
+#### due to cutefishos pre-config in some component, `DCMAKE_INSTALL_PREFIX=/usr` was required
 change to source DIR, excute command
 ```
 mkdir build
