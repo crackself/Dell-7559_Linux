@@ -7,6 +7,15 @@
     nano ~/.xinitrc
     export LANG="zh_CN.UTF-8"
     export LANGUAGE="zh_CN:en_US"
+    
+    nano /etc/profile.d/i18n.sh
+    # Set up i18n variables
+    #. /etc/locale.conf
+    #export LANG=zh_CN.UTF-8
+    export XMODIFIERS=@im=fcitx
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    
 #### 以下依赖包参照BLFS官方文档编译，安装位置为`/usr`
     xcb-util
     xcb-util-proto
