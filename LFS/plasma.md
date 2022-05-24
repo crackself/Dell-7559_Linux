@@ -44,7 +44,6 @@ c0c4e2f09fea4440da5c1777cc3605b3  kirigami2-5.92.0.tar.xz
 140700c804ef89f06024524c8a51daa5  knewstuff-5.92.0.tar.xz
 aa0a82faf3749e707565bc0172ced5d3  kinit-5.92.0.tar.xz
 fe2d0dbf070991d7ae51779db4fa8fd2  kparts-5.92.0.tar.xz
-30d8ecac16f36e4b9fd1794a39460c42  breeze-icons-5.92.0.tar.xz
 9f80142ffe37b515b34dc0889126fe65  kactivities-5.92.0.tar.xz
 d8c472435f2e7025e73cadc57d822bf0  syntax-highlighting-5.92.0.tar.xz
 a6bfff981c61753c508cc5c45543cb58  ktexteditor-5.92.0.tar.xz
@@ -54,10 +53,12 @@ ceb9a445c9c074cd922c929454dfcf05  kwayland-5.92.0.tar.xz
 996e0521066cf5c5cf73a23b5d24acc6  modemmanager-qt-5.92.0.tar.xz
 aced764828de66a63eeb9c1226a2a36c  kpeople-5.92.0.tar.xz
 6603e4e589a0701526b620f6cbb76b49  bluez-qt-5.92.0.tar.xz
+30d8ecac16f36e4b9fd1794a39460c42  breeze-icons-5.92.0.tar.xz
 645b3974745de2cfc3a12096088cb3fd  kactivities-stats-5.92.0.tar.xz
 a2c3256fcb5784405328a306aecfd034  krunner-5.92.0.tar.xz
 76b4b3595295fda99eedf9cd39ea9187  prison-5.92.0.tar.xz
 baaec24cc963ca6667336b55a2b4f6c7  qqc2-desktop-style-5.92.0.tar.xz
+10cd152091f2c14d7dcb888cd69aa902  kjs-5.92.0.tar.xz
 c366867d52842fa7b720dafb5fb76b40  kdelibs4support-5.92.0.tar.xz
 4e66810dd1a30dc3cf9ba4704cf1fb0c  kquickcharts-5.92.0.tar.xz
 d89c0336fb388a584210cb26f746b171  knotifyconfig-5.92.0.tar.xz
