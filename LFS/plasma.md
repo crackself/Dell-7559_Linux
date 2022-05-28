@@ -198,3 +198,29 @@ Exec=/opt/kf5/lib/libexec/plasma-dbus-run-session-if-needed /opt/kf5/bin/startpl
 TryExec=/opt/kf5/bin/startplasma-x11
 ...
 ```
+
+#### plasma5锁屏后无法解锁屏幕
+```
+nano /etc/pam.d/other
+```
+```
+# Begin /etc/pam.d/other
+
+auth        required        pam_unix.so
+account     required        pam_unix.so
+password    required        pam_unix.so
+session     required        pam_unix.so
+
+# End /etc/pam.d/other
+```
+
+#### plasma5屏幕节能不能自动黑屏
+`nano /etc/pam.d/kscreensaver`
+```
+# Begin /etc/pam.d/kscreensaver
+
+auth    include system-auth
+account include system-account
+
+# End /etc/pam.d/kscreensaver
+```
