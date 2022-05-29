@@ -188,6 +188,21 @@ cutefish_core移除synaptics
 	修改：     settings-daemon/touchpad/x11/xlibbackend.cpp
 	修改：     settings-daemon/touchpad/x11/xlibbackend.h
 ```
+### kwin-plugins $KF5_PREFIX 库文件支持
+`nano plugins/roundedwindow/CMakeLists.txt`
+```
+添加
+	SET(INC_DIR "/opt/kf5/include/")
+	SET(LINK_DIR "/opt/kf5/lib")
+	include_directories(${INC_DIR})
+	link_directories(${LINK_DIR})
+
+删除
+	find_path(EFFECTS_H kwineffects.h PATH_SUFFIXES kf5) 
+	...
+	    message(FATAL_ERROR "cant continue")
+	endif (NOT EFFECTS_H OR NOT KWIN_GLUTILS OR NOT KWIN_EFFECTS OR NOT OPENGL)
+```
 ## Build cutefish
 #### Prepar sources
 ##### list as the base minimal working Desktop Envirment, other program need more test
