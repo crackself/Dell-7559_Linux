@@ -179,50 +179,30 @@
 ### Fcitx5 配置文件、主题美化
 #### Fcitx5-Rime输入法配置（非必须，若fcitx5在fcitx5-rime安装之前已启动，则需手动修改此配置文件，或删之后重启fcitx5）
 `nano ~/.config/fcitx5/profile`
+```
+[Groups/0]
+# Group Name
+Name="Group 1"
+# Layout
+Default Layout=us
+# Default Input Method
+DefaultIM=rime
 
-    [Groups/0]
-    # Group Name
-    Name="分组 1"
-    # Layout
-    Default Layout=cn
-    # Default Input Method
-    DefaultIM=rime
+[Groups/0/Items/0]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
 
-    [Groups/0/Items/0]
-    # Name
-    Name=keyboard-cn
-    # Layout
-    Layout=
+[Groups/0/Items/1]
+# Name
+Name=rime
+# Layout
+Layout=
 
-    [Groups/0/Items/1]
-    # Name
-    Name=rime
-    # Layout
-    Layout=
-
-    [Groups/1]
-    # Group Name
-    Name="分组 2"
-    # Layout
-    Default Layout=us
-    # Default Input Method
-    DefaultIM=rime
-
-    [Groups/1/Items/0]
-    # Name
-    Name=keyboard-us
-    # Layout
-    Layout=
-
-    [Groups/1/Items/1]
-    # Name
-    Name=rime
-    # Layout
-    Layout=
-
-    [GroupOrder]
-    0="分组 1"
-    1="分组 2"
+[GroupOrder]
+0="Group 1"
+```
 
 #### Fcitx5 皮肤设置
 `nano ~/.config/fcitx5/conf/classicui.conf`
