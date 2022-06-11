@@ -23,34 +23,31 @@ auto-sync = yes
 # built this stage.
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
-COMMON_FLAGS="-march=native -O2 -pipe -finline-functions -fomit-frame-pointer"
+COMMON_FLAGS="-march=native -O3 -pipe"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
-#LDFLAGS="${COMMON_FLAGS} -Wl,-O2 -Wl,--as-needed -Wl,--hash-style=gnu -Wl,--sort-common -Wl,--strip-all"
+LDFLAGS="${COMMON_FLAGS}"
 
 MAKEOPTS="-j4"
-#NINJAOPTS="-j$(makeopts_jobs) -l$(makeopts_loadavg "${MAKEOPTS}" 0)"
-NINJAOPTS="-j3"
+NINJAOPTS="-j4"
 
 CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3"
 CHOST="x86_64-pc-linux-gnu"
 
-del="-busybox -bindist -debug -doc -test -handbook -nls -accessibility -mdev -consolekit -netifrc -oss -gpm -iptables -bluetooth -pulseaudio -vlc"
+del="-busybox -bindist -debug -doc -gtk-doc -test -handbook -nls -accessibility -mdev -consolekit -netifrc -oss -gpm -pulseaudio -vlc -ppp"
 kde="-gnome-shell -gnome -gnome-keyring -gtk -systemd kde"
 dwm="-gnome-shell -gnome -gnome-keyring -gtk -gtk2 -gtk3 -systemd -kde -qt4 -qt5"
 gnome="-qt4 -qt5 -kde -systemd gtk gnome"
-lumina="-gnome-shell -gnome -gnome-keyring -systemd -kde"
-base="lm-sensors udev icu minizip blkid acpi dbus policykit elogind udisks http2"
-add="bluetooth iwd wifi ppp dhcpcd nftable networkmanager usb alsa audio sudo git"
-#desktop="X cjk jack vdpau vaapi wayland"
+base="udev icu blkid acpi dbus policykit elogind udisks"
+add="bluetooth iwd wifi networkmanager usb alsa sudo git"
 desktop="X cjk jack vdpau vaapi wayland gles2"
-Media="aac ao dts dvd encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg cdr mms"
+media="aac encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg"
 dev="fortran lto pgo graphite openmp"
-USE="${del} ${dwm} ${base} ${add} ${media} ${dev} ${desktop}"
+USE="${del} ${base} ${add} ${dev} ${media} ${desktop}"
 
-VIDEO_CARDS="intel i965 iris nvidia"
+VIDEO_CARDS="intel i965 iris nvdia"
 ALSA_CARDS="hda-intel"
 INPUT_DEVICES="libinput"
 GRUB_PLATFORMS="efi-64"
@@ -61,7 +58,8 @@ ACCEPT_KEYWORDS="~amd64"
 L10N="en-US zh-CN en zh"
 #AUTO_CLEAN="yes"
 
-#LLVM_TARGETS="X86"
+#PYTHON_TARGETS="python3_10"
+#PYTHON_SINGLE_TARGET="python3_10"
 
 # NOTE: This stage was built with the bindist Use flag enabled
 PORTDIR="/var/db/repos/gentoo"
@@ -185,6 +183,12 @@ zh_CN.UTF-8 UTF-8
 locale-gen
 eselect locale list
 eselect locale set X
+```
+### 安装字体
+```
+media-fonts/fontawesome    图标字体
+media-fonts/noto-cjk       中日韩字体集
+media-fonts/wqy-zenhei     中文字体
 ```
 ### DW1560特别驱动:
 - BroadCom BCM94352Z wireless driver: `broadcom-sta`
