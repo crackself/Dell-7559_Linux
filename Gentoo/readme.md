@@ -249,9 +249,9 @@ QEMU模拟TPM2.0需要安装wtpm
 需添加全局USE: vulkan
 ```
 ### Appimage 支持
-需安装[fuse2](https://wiki.gentoo.org/wiki/AppImage)
+需安装cups、[fuse2](https://wiki.gentoo.org/wiki/AppImage)
 ```
-emerge --ask sys-fs/fuse:0
+emerge --ask net-print/cups sys-fs/fuse:0
 ```
 
 ### KDE Plasma系统主题美化
