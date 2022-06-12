@@ -189,6 +189,7 @@ eselect locale set X
 media-fonts/fontawesome    图标字体
 media-fonts/noto-cjk       中日韩字体集
 media-fonts/wqy-zenhei     中文字体
+media-fonts/dejavu         英文终端字体
 ```
 ### DW1560特别驱动:
 - BroadCom BCM94352Z wireless driver: `broadcom-sta`
