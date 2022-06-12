@@ -21,7 +21,8 @@ set $term alacritty
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show  drun | xargs swaymsg exec --
 
-#default_border none
+# no display window border/title
+default_border none
 
 ### Output configuration
 #
@@ -230,4 +231,5 @@ bar {
 
 include /etc/sway/config.d/*
 
-#exec_always fcitx5 -d --replace
+# auto start fcitx5
+exec_always fcitx5 -d --replace
