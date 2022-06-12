@@ -241,8 +241,18 @@ QEMU模拟TPM2.0需要安装wtpm
 硬件直通需要解除主系统对硬件的使用（虚拟机独占）
 
 ### wayland 支持
-修改`/etc/portage/make.conf` 添加`wayland gles2` USE标记:
-      desktop="X cjk jack vdpau vaapi wayland gles2"
+```
+需添加全局USE: gles2
+```
+### vulkan 支持
+```
+需添加全局USE: vulkan
+```
+### Appimage 支持
+需安装[fuse2](https://wiki.gentoo.org/wiki/AppImage)
+```
+emerge --ask sys-fs/fuse:0
+```
 
 ### KDE Plasma系统主题美化
       全局主题：WhiteSur-kde(https://github.com/vinceliuice/WhiteSur-kde)          
