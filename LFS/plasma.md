@@ -98,7 +98,7 @@ while read -r line; do
 done < mini.md5
 ```
 
-## mini.md5:
+## 24.4mini.md5:
 ```
 f239aaffb15592e8d35f250763de0928  kdecoration-5.24.4.tar.xz
 97ef068eddbe1d00c920192d1500dd93  libkscreen-5.24.4.tar.xz
@@ -118,7 +118,7 @@ c8209bc8147b8e556b59270af9b90666  plasma-desktop-5.24.4.tar.xz
 51314142bc96fd1864049f0727540e5f  systemsettings-5.24.4.tar.xz
 
 ```
-### mini+.md5
+### 24.4mini+.md5
 ```
 f239aaffb15592e8d35f250763de0928  kdecoration-5.24.4.tar.xz
 97ef068eddbe1d00c920192d1500dd93  libkscreen-5.24.4.tar.xz
@@ -142,6 +142,26 @@ e4707182dc0508c4fbbdf495067b7e80  plasma-integration-5.24.4.tar.xz
 263e1a645e19b6daed9743540217da8f  kde-cli-tools-5.24.4.tar.xz
 51314142bc96fd1864049f0727540e5f  systemsettings-5.24.4.tar.xz
 ```
+
+### 25.2mini.md5
+```
+f239aaffb15592e8d35f250763de0928  kdecoration-5.25.2.tar.xz
+97ef068eddbe1d00c920192d1500dd93  libkscreen-5.25.2.tar.xz
+6d43b014fcf7d220653c82c9187ad238  libksysguard-5.25.2.tar.xz
+558c03416d5e97946857232ff4a205fe  breeze-5.25.2.tar.xz
+91adcae1cd632ca63d309bb2f55afbc6  layer-shell-qt-5.25.2.tar.xz
+fd288ff836cc804e3f87dd2f5bf73350  kscreenlocker-5.25.2.tar.xz
+a92ef62e3780435009e1d67623727d9e  kwin-5.25.2.tar.xz
+1756314f3b95077a4a177d6e150c0c74  plasma-workspace-5.25.2.tar.xz
+6e8da61b41691b811f0029d0692af2b8  bluedevil-5.25.2.tar.xz
+8480ee90af0592d04b8d13747c9dc984  kscreen-5.25.2.tar.xz
+fad6a3d603afffd3ef8312c58aa810a1  plasma-nm-5.25.2.tar.xz
+ac1e83397316954fb587c86d00f04591  powerdevil-5.25.2.tar.xz
+c8209bc8147b8e556b59270af9b90666  plasma-desktop-5.25.2.tar.xz
+3ccd98acb7b5ba78c6c474cb6904e5e6  kactivitymanagerd-5.25.2.tar.xz
+51314142bc96fd1864049f0727540e5f  systemsettings-5.25.2.tar.xz
+```
+
 ### build.txt
 ```
 while read -r line; do
@@ -189,6 +209,25 @@ mkdir build
         make
         make install
 ```
+
+
+### [kwrite](https://github.com/KDE/kate.git) 
+Simple Text Editor
+```
+mkdir build
+       cd    build
+
+       cmake -DCMAKE_INSTALL_PREFIX=$KF5_PREFIX \
+             -DCMAKE_BUILD_TYPE=Release         \
+             -DBUILD_TESTING=OFF                \
+             -DBUILD_addons=FALSE               \
+             -DBUILD_kate=FALSE                 \
+             -Wno-dev ..  &&
+
+        make
+        make install
+```
+
 ### plasma-x11 xsession file modify
 `nano /opt/kf5/share/xsessions/plasma.desktop`
 ```
