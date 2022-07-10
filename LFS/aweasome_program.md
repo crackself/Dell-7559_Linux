@@ -133,6 +133,12 @@ ninja install
             -cups                                    \
             -skip qtwebengine
 ```
+### [mobile-broadband-provider-info](https://download.gnome.org/sources/mobile-broadband-provider-info/)
+```
+./configure --prefix=/usr
+make install
+```
+
 ### To Do
 Blender
 是一款免费开源三维图形图像软件，提供从建模、动画、材质、渲染、到音频处理、视频剪辑等一系列动画短片制作解决方案 YT上很多大佬都在使用 游戏建模 动画制作非常推荐这款
