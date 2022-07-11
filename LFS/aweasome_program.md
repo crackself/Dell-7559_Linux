@@ -127,10 +127,11 @@ ninja install
             -nomake examples                          \
             -no-rpath                                 \
             -syslog                                   \
-            -gui                                   \
-            -release                                    \
-            -xcb-xlib                                    \
-            -cups                                    \
+            -gui                                      \
+            -release                                  \
+            -xcb-xlib                                 \
+            -cups                                     \
+            -no-gstreamer                             \
             -skip qtwebengine
 ```
 ### [mobile-broadband-provider-info](https://download.gnome.org/sources/mobile-broadband-provider-info/)
