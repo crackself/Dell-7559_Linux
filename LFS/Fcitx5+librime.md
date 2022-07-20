@@ -135,6 +135,7 @@
 
 ### cldr-emoji-annotation
     git clone --depth=1 https://github.com/fujiwarat/cldr-emoji-annotation.git
+    mkdir m4
     autoreconf -i
     mkdir build && cd build
     ../configure --prefix=/usr
