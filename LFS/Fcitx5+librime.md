@@ -62,7 +62,15 @@
     ../configure --prefix=/usr --disable-static --enable-shared
     make
     make install
-
+    
+    or
+    
+    git clone --depth=1 https://github.com/capnproto/capnproto.git
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON  ..
+    make
+    makeinstall
+    
 ####  glog (optional)
     https://github.com/google/glog.git
     mkdir build && cd build
@@ -71,35 +79,35 @@
     make install
 
 ####  leveldb
-    https://github.com/google/leveldb.git
+    git clone --depth=1 https://github.com/google/leveldb.git
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DLEVELDB_BUILD_BENCHMARKS=OFF -DLEVELDB_BUILD_TESTS=OFF ..
     make
     make install
 
 ####  marisa-trie
-    https://github.com/s-yata/marisa-trie.git
+    git clone --depth=1 https://github.com/s-yata/marisa-trie.git
     autoreconf -i
     ./configure --prefix=/usr --enable-native-code --enable-shared --disable-static --disable-test
     make
     make install
 
 #### opencc
-    https://github.com/BYVoid/OpenCC.git
+    git clone --depth=1 https://github.com/BYVoid/OpenCC.git
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_DOCUMENTATION=OFF -DENABLE_BENCHMARK=OFF -DENABLE_GTEST=OFF -DUSE_SYSTEM_GOOGLE_BENCHMARK=OFF -DUSE_SYSTEM_GTEST=OFF ..
     make
     make install
 
 #### yaml-cpp
-    https://github.com/jbeder/yaml-cpp.git
+    git clone --depth=1 https://github.com/jbeder/yaml-cpp.git
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DYAML_BUILD_SHARED_LIBS=ON -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_TESTS=OFF ..
     make
     make install
 
 #### expat
-    https://github.com/libexpat/libexpat.git
+    git clone --depth=1 https://github.com/libexpat/libexpat.git
     sources file in expat dir
     mkdir build && cd build
     (../configure --prefix=/usr --disable-static --disable-test)
@@ -110,7 +118,7 @@
 
 #### fmt
     https://fmt.dev/latest/index.html
-    https://github.com/fmtlib/fmt.git
+    git clone --depth=1 https://github.com/fmtlib/fmt.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DFMT_TEST=FALSE ..
@@ -118,7 +126,7 @@
     make install
 
 #### xcb-imdkit
-    https://github.com/fcitx/xcb-imdkit.git
+    git clone --depth=1 https://github.com/fcitx/xcb-imdkit.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE ..
@@ -126,7 +134,7 @@
     make install
 
 ### cldr-emoji-annotation
-    https://github.com/fujiwarat/cldr-emoji-annotation.git
+    git clone --depth=1 https://github.com/fujiwarat/cldr-emoji-annotation.git
     autoreconf -i
     mkdir build && cd build
     ../configure --prefix=/usr
@@ -134,14 +142,14 @@
     make install
     
 #### librime
-    https://github.com/rime/librime.git
+    git clone --depth=1 https://github.com/rime/librime.git
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBOOST_USE_CXX11=ON -DBUILD_TEST=OFF -DENABLE_LOGGING=OFF -DCMAKE_DISABLE_FIND_PACKAGE_Gflags=ON -DENABLE_EXTERNAL_PLUGINS=ON -DINSTALL_PRIVATE_HEADERS=ON ..
     make
     make install
 
 #### fcitx5
-    https://github.com/fcitx/fcitx5.git
+    git clone --depth=1 https://github.com/fcitx/fcitx5.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_WAYLAND=ON -DENABLE_TEST=OFF -DENABLE_EMOJI=ON -DENABLE_ENCHANT=ON -DENABLE_X11=ON -DUSE_SYSTEMD=OFF ..
@@ -149,7 +157,7 @@
     make install
 
 #### fcitx5-gtk
-    https://github.com/fcitx/fcitx5-gtk.git
+    git clone --depth=1 https://github.com/fcitx/fcitx5-gtk.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_GTK2_IM_MODULE=ON -DENABLE_GTK3_IM_MODULE=ON -DENABLE_GTK4_IM_MODULE=OFF ..
@@ -157,7 +165,7 @@
     make install
 
 #### fcitx5-qt
-    https://github.com/fcitx/fcitx5-qt.git
+    git clone --depth=1 https://github.com/fcitx/fcitx5-qt.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=no -DENABLE_QT5=qt5 ..
@@ -169,7 +177,7 @@
     # just copy rime-data into /etc/rime
 
 #### fcitx5-rime
-    https://github.com/fcitx/fcitx5-rime.git
+    git clone --depth=1 https://github.com/fcitx/fcitx5-rime.git
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=TRUE -DRIME_DATA_DIR=/etc/rime ..
