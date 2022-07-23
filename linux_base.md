@@ -7,3 +7,8 @@ cat /sys/class/thermal/thermal_zone*/temp
 cat /sys/class/thermal/thermal_zone*/temp
 ```
 - https://www.linuxfordevices.com/tutorials/linux/check-cpu-and-gpu-temperatures
+
+### find key world in Document
+```
+grep -Rw [Document Path] -e [Key World]
+```
