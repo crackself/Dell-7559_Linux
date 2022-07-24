@@ -62,6 +62,36 @@
              --disable-ldap              \
              --enable-lto
 ```
+
+### Xorg
+`$XORG_PREFIX="/usr"`
+#### xorg-app
+##### installed
+```
+5d3feaa898875484b6b340b3888d49d8  iceauth-1.0.9.tar.xz
+92be564d4be7d8aa7b5024057b715210  sessreg-1.1.2.tar.bz2
+3a93d9f0859de5d8b65a68a125d48f6a  smproxy-1.0.6.tar.bz2
+dbcf944eb59343b84799b2cc70aace16  xauth-1.1.2.tar.xz
+5b6405973db69c0443be2fba8e1a8ab7  xbacklight-1.2.3.tar.bz2
+f67116760888f2e06486ee3d179875d2  xdpyinfo-1.3.3.tar.xz
+480e63cd365f03eb2515a6527d5f4ca6  xdriinfo-1.0.6.tar.bz2
+c45e9f7971a58b8f0faf10f6d8f298c0  xkbcomp-1.4.5.tar.bz2
+0d66e07595ea083871048c4b805d8b13  xmodmap-1.0.11.tar.xz
+2358e29133d183ff67d4ef8afd70b9d2  xprop-1.2.5.tar.bz2
+85f04a810e2fb6b41ab872b421dce1b1  xrdb-1.2.1.tar.bz2
+33b04489e417d73c90295bd2a0781cbb  xrefresh-1.0.7.tar.xz
+b13afec137b9b331814a9824ab03ec80  xvinfo-1.1.4.tar.bz2
+26d46f7ef0588d3392da3ad5802be420  xwininfo-1.1.5.tar.bz2
+```
+##### mini_installed
+```
+5d3feaa898875484b6b340b3888d49d8  iceauth-1.0.9.tar.xz
+dbcf944eb59343b84799b2cc70aace16  xauth-1.1.2.tar.xz
+5b6405973db69c0443be2fba8e1a8ab7  xbacklight-1.2.3.tar.bz2
+c45e9f7971a58b8f0faf10f6d8f298c0  xkbcomp-1.4.5.tar.bz2
+85f04a810e2fb6b41ab872b421dce1b1  xrdb-1.2.1.tar.bz2
+```
+### xorg-lib full installed
 #### mesa
 ```
 patch -Np1 -i ../mesa-21.3.7-add_xdemos-1.patch
