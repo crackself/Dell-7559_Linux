@@ -92,6 +92,22 @@ c45e9f7971a58b8f0faf10f6d8f298c0  xkbcomp-1.4.5.tar.bz2
 85f04a810e2fb6b41ab872b421dce1b1  xrdb-1.2.1.tar.bz2
 ```
 ### xorg-lib full installed
+
+### LLVM
+``CC=gcc CXX=g++                                  \
+cmake -DCMAKE_INSTALL_PREFIX=/usr               \
+      -DLLVM_ENABLE_FFI=ON                      \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DLLVM_BUILD_LLVM_DYLIB=ON                \
+      -DLLVM_LINK_LLVM_DYLIB=ON                 \
+      -DLLVM_ENABLE_RTTI=ON                     \
+      -DLLVM_TARGETS_TO_BUILD="host;X86;BPF" \
+      -DLLVM_BINUTILS_INCDIR=/usr/include       \
+      -DLLVM_INCLUDE_BENCHMARKS=OFF             \
+      -Wno-dev -G Ninja ..                      &&
+ninja`
+
+```
 #### mesa
 ```
 patch -Np1 -i ../mesa-21.3.7-add_xdemos-1.patch
