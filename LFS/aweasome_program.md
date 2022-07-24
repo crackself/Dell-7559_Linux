@@ -94,7 +94,8 @@ c45e9f7971a58b8f0faf10f6d8f298c0  xkbcomp-1.4.5.tar.bz2
 ### xorg-lib full installed
 
 ### LLVM
-``CC=gcc CXX=g++                                  \
+```
+CC=gcc CXX=g++                                  \
 cmake -DCMAKE_INSTALL_PREFIX=/usr               \
       -DLLVM_ENABLE_FFI=ON                      \
       -DCMAKE_BUILD_TYPE=Release                \
@@ -105,7 +106,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr               \
       -DLLVM_BINUTILS_INCDIR=/usr/include       \
       -DLLVM_INCLUDE_BENCHMARKS=OFF             \
       -Wno-dev -G Ninja ..                      &&
-ninja`
+ninja
 
 ```
 #### mesa
