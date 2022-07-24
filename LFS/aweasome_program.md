@@ -137,6 +137,21 @@ unset GALLIUM_DRV DRI_DRIVERS PLATFORM
 ninja
 ninja install
 ```
+or
+```
+meson --prefix=$XORG_PREFIX   \
+      --buildtype=release     \
+      -Dplatforms=x11,wayland \
+      -Dgallium-drivers="iris"  \
+      -Dglx=dri               \
+      -Dvalgrind=disabled     \
+      -Dlibunwind=disabled    \
+      -Dvulkan-drivers=intel \
+      -Dgles2=enabled         \
+      ..                      &&
+
+ninja
+```
 
 ### MPV player
 #### required `lua-5.2` `mujs`
