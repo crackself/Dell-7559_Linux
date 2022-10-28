@@ -24,4 +24,5 @@ Workspace Indicator                             多桌面切换器
 Dash to Dock                                    Dash变为Dock栏
 Coverflow Alt-Tab                               活动窗口切换3D效果
 No Titlebar When Maximized                      最大化窗口不显示标题栏
+Bing Wallpaper                                  Bing壁纸
 ```
