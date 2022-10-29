@@ -1,6 +1,8 @@
 ### gnome精简安装
 ```
-gnome-shell gnome-control-center gnome-tweaks gedit nautilus evince gnome-backgrounds gnome-themes-extra
+gnome-shell gnome-control-center gnome-tweaks gedit nautilus evince gnome-backgrounds gnome-themes-extra gdm gnome-shell-extensions gnome-settings-daemon gnome-tweaks 
+pulseaudio-bluetooth pulseaudio-alsa bluez-utils
+fcitx5-rime fcitx5-gtk mpv nautilus mousepad 
 ```
 
 ### gnome桌面美化
