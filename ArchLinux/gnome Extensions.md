@@ -1,23 +1,26 @@
-### gnome精简安装
+## i Gnome精简安装
 ```
 gnome-shell gnome-control-center gnome-tweaks gedit nautilus evince gnome-backgrounds gnome-themes-extra gdm gnome-shell-extensions gnome-settings-daemon gnome-tweaks 
 pulseaudio-bluetooth pulseaudio-alsa bluez-utils
-fcitx5-rime fcitx5-gtk mpv nautilus mousepad 
+fcitx5-rime fcitx5-gtk mpv nautilus mousepad
 ```
 
-### gnome桌面美化
+## ii 桌面美化
 
 ## Material Shell布局
 ![image](https://user-images.githubusercontent.com/16448332/198831257-40f38215-460e-4f18-9d0e-10cb1f47b72d.png)
 ```
+Material Shell                                  Material风格shell布局
 No overview at start-up                         跳过开机桌面选择
 Screenshot Tool                                 顶栏右侧截图工具    （需安装gnome-screenshot）
 Bing Wallpaper                                  Bing壁纸
 Removable Drive Menu                            可移动设备指示器
 Input Method Panel                              输入法指示器
+Bluetooth Quick Connect                         蓝牙连接下拉菜单优化
+User Themes                                     加载用户主题        （可选）
 
 ```
-## 常规布局
+## iii 常规布局
 ![桌面](https://user-images.githubusercontent.com/16448332/198572840-3e1bfdbd-470a-4606-8a6a-3e570fc6a58b.png)
 
 ```
@@ -37,4 +40,6 @@ Dash to Dock                                    Dash变为Dock栏
 Coverflow Alt-Tab                               活动窗口切换3D效果
 No Titlebar When Maximized                      最大化窗口不显示标题栏
 Bing Wallpaper                                  Bing壁纸
+Bluetooth Quick Connect                         蓝牙连接下拉菜单优化
+User Themes                                     加载用户主题        （可选）
 ```
