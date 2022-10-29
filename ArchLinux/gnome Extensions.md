@@ -6,10 +6,20 @@ fcitx5-rime fcitx5-gtk mpv nautilus mousepad
 ```
 
 ### gnome桌面美化
+
+## Material Shell布局
+![image](https://user-images.githubusercontent.com/16448332/198831257-40f38215-460e-4f18-9d0e-10cb1f47b72d.png)
+```
+No overview at start-up                         跳过开机桌面选择
+Screenshot Tool                                 顶栏右侧截图工具    （需安装gnome-screenshot）
+Bing Wallpaper                                  Bing壁纸
+Removable Drive Menu                            可移动设备指示器
+Input Method Panel                              输入法指示器
+
+```
+## 常规布局
 ![桌面](https://user-images.githubusercontent.com/16448332/198572840-3e1bfdbd-470a-4606-8a6a-3e570fc6a58b.png)
 
-
-### 所用扩展
 ```
 No overview at start-up                         跳过开机桌面选择
 ArcMenu                                         左上角活动替换为菜单栏   （需安装gnome-menus）
