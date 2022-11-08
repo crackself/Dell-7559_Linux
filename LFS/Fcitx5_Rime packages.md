@@ -12,6 +12,7 @@ Build Internal package following LFS / BLFS Book,  Extenal package following it'
     json-c
     dbus
     fmt
+    enchant
     cldr-emoji-annotation*
 
 ### Rime Dependencies:
@@ -55,6 +56,7 @@ Building:
 	aspell (with at list one dictionaries)
 	gtk+2
 	gtk+3
+	enchant
 	qt5 (optional, if build fcitx5-qt or fcitx5-configtool)
 ##### Extenal:
 	expat
