@@ -153,7 +153,7 @@
     git clone --depth=1 https://github.com/fcitx/fcitx5.git
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_WAYLAND=ON -DENABLE_TEST=OFF -DENABLE_EMOJI=ON -DENABLE_ENCHANT=ON -DENABLE_X11=ON -DUSE_SYSTEMD=OFF ..
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DENABLE_WAYLAND=ON -DENABLE_TEST=OFF -DENABLE_EMOJI=ON -DENABLE_ENCHANT=ON -DENABLE_X11=ON -DUSE_SYSTEMD=OFF -DDBUS=OFF ..
     make
     make install
 
