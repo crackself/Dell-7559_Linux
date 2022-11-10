@@ -16,36 +16,36 @@
 #     session.menuFile: ~/.fluxbox/my-menu
 [begin] (Fluxbox)
 [encoding] {UTF-8}
-      [exec] (Alacritty) {alacritty}
-      [exec] (Firefox) {firefox}
+      [exec] (Alacritty) {alacritty} 
+      [exec] (Firefox) {firefox} 
 [submenu] (Editors)
-      [exec]   (Mousepad) {mousepad}
+      [exec]   (Mousepad) {mousepad} 
 [end]
 
 [submenu] (System Tools)
-      [exec]   (Run) {fbrun}
+      [exec]   (Run) {fbrun}       
       [exec]   (top) {alacritty -e top}
-      [exec]   (alsamixer) {alacritty -e alsamixer}
+      [exec]   (alsamixer) {alacritty -e alsamixer}  
 [end]
 [submenu] (Fluxbox menu)
-      [config] (Configure)
+      [config] (Configure) 
 [submenu] (System Styles) {Choose a style...}
-      [stylesdir] (/usr/share/fluxbox/styles)
+      [stylesdir] (/usr/share/fluxbox/styles) 
 [end]
 [submenu] (User Styles) {Choose a style...}
-      [stylesdir] (~/.fluxbox/styles)
+      [stylesdir] (~/.fluxbox/styles) 
 [end]
-      [workspaces] (Workspace List)
+      [workspaces] (Workspace List) 
 [submenu] (Tools)
-      [exec] (Run) {fbrun}
-      [exec] (Regen Menu) {fluxbox-generate_menu -t alacritty}
+      [exec] (Run) {fbrun} 
+      [exec] (Regen Menu) {fluxbox-generate_menu -t alacritty} 
 [end]
-      [commanddialog] (Fluxbox Command)
-      [reconfig] (Reload config)
-      [restart] (Restart)
-      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
-      [separator]
-      [exit] (Exit)
+      [commanddialog] (Fluxbox Command) 
+      [reconfig] (Reload config) 
+      [restart] (Restart) 
+      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center} 
+      [separator] 
+      [exit] (Exit) 
 [end]
 [endencoding]
 [end]
