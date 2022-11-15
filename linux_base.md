@@ -12,3 +12,5 @@ cat /sys/class/thermal/thermal_zone*/temp
 ```
 grep -Rw [Document Path] -e [Key World]
 ```
+### update icon cache
+`gtk-update-icon-cache /usr/share/icons/Adwaita`
