@@ -55,8 +55,9 @@ Building:
 	json-c
 	iso codes
 	aspell (with at list one dictionaries)
-	gtk+2
-	gtk+3
+	gtk+2  (need for build fcitx5-gtk gtkk2 supoort)
+	gtk+3  (need for build fcitx5-gtk gtkk3 supoort)
+	gtk+4  (need for build fcitx5-gtk gtkk4 supoort)
 	enchant
 	qt5 (optional, if build fcitx5-qt or fcitx5-configtool)
 ##### Extenal:
