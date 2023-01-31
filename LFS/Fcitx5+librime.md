@@ -191,7 +191,7 @@
 ```
 [Groups/0]
 # Group Name
-Name="Group 1"
+Name=Default
 # Layout
 Default Layout=us
 # Default Input Method
@@ -210,7 +210,7 @@ Name=rime
 Layout=
 
 [GroupOrder]
-0="Group 1"
+0=Default
 ```
 
 #### Fcitx5 皮肤设置
