@@ -7,6 +7,7 @@
 #### 前提：有在使用中订内核源码及完成编译的目录
 ### 通用Patch (参考Archlinux)
 ```
+patch -Np1 -i ../patch/000-eth-to-wlan.patch
 patch -Np1 -i ../patch/001-null-pointer-fix.patch
 patch -Np1 -i ../patch/002-rdtscl.patch
 patch -Np1 -i ../patch/003-linux47.patch
