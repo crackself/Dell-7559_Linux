@@ -49,6 +49,133 @@ http {
 }
 ```
 
+### nginx 配置SSL
+```
+server {
+	listen       443 ssl http2;
+	listen       [::]:443 ssl http2;
+#	listen       80;
+	server_name  cloud.blfs.top;
+
+        ssl_certificate "/etc/letsencrypt/live/blfs.top/fullchain.pem";
+        ssl_certificate_key "/etc/letsencrypt/live/blfs.top/privkey.pem";
+
+	ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+	ssl_trusted_certificate /etc/letsencrypt/live/blfs.top/chain.pem;
+
+	location / {
+        	auth_basic "Login";
+	        auth_basic_user_file /etc/nginx/htpasswd;
+                proxy_pass  http://localhost:5678; #端口自行修改为映射端口
+                proxy_http_version	1.1;
+                proxy_cache_bypass	$http_upgrade;
+                proxy_set_header Upgrade           $http_upgrade;
+                proxy_set_header Connection        "upgrade";
+                proxy_set_header Host              $host;
+                proxy_set_header X-Real-IP         $remote_addr;
+                proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-Host  $host;
+                proxy_set_header X-Forwarded-Port  $server_port;
+	}
+        location /v {
+                proxy_redirect off;
+                proxy_pass http://localhost:5678;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+        }
+	location /download {
+		proxy_redirect off;
+                proxy_pass http://localhost:10001;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+	}
+}
+[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
+[root@LFS ~]# reboot
+Connection to 104.36.64.184 closed by remote host.
+Connection to 104.36.64.184 closed.
+[wenzhi@insprion ~]$ ssh root@104.36.64.184 -p 27502
+root@104.36.64.184's password:
+Last login: Wed Mar  1 13:11:48 2023 from 120.235.228.48
+[root@LFS ~]# systemctl status nginx
+× nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: disabled)
+     Active: failed (Result: exit-code) since Wed 2023-03-01 13:13:39 UTC; 26s ago
+    Process: 212 ExecStart=/usr/bin/nginx -g pid /run/nginx.pid; error_log stderr; (code=exited, status=1/FAILURE)
+        CPU: 37ms
+
+Mar 01 13:13:39 LFS systemd[1]: Starting A high performance web server and a reverse proxy server...
+Mar 01 13:13:39 LFS nginx[212]: 2023/03/01 13:13:39 [emerg] 212#212: unexpected end of file, expecting ";" or "}" in /etc/nginx/sites-enable>
+Mar 01 13:13:39 LFS systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Mar 01 13:13:39 LFS systemd[1]: nginx.service: Failed with result 'exit-code'.
+Mar 01 13:13:39 LFS systemd[1]: Failed to start A high performance web server and a reverse proxy server.
+[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
+[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
+[root@LFS ~]# reboot
+[root@LFS ~]# Connection to 104.36.64.184 closed by remote host.
+Connection to 104.36.64.184 closed.
+[wenzhi@insprion ~]$
+[wenzhi@insprion ~]$ ssh root@104.36.64.184 -p 27502
+root@104.36.64.184's password:
+Last login: Wed Mar  1 13:13:58 2023 from 120.235.228.48
+[root@LFS ~]#
+[root@LFS ~]#
+[root@LFS ~]# cat /etc/nginx/sites-enabled/blog.blfs.top.conf
+server {
+	listen       443 ssl http2;
+	listen       [::]:443 ssl http2;
+#	listen       80;
+	server_name  blog.blfs.top;
+
+        ssl_certificate "/etc/letsencrypt/live/blfs.top/fullchain.pem";
+        ssl_certificate_key "/etc/letsencrypt/live/blfs.top/privkey.pem";
+
+        ssl_prefer_server_ciphers on;
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+        ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+
+        keepalive_timeout   70;
+        ssl_session_timeout 10m;
+        ssl_session_tickets on;
+        ssl_stapling        on;
+        ssl_stapling_verify on;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+	# letsencrypt免费证书验证需要指定信任到证书
+	ssl_trusted_certificate /etc/letsencrypt/live/blfs.top/chain.pem;
+
+	location /download {
+                proxy_redirect off;
+                proxy_pass http://localhost:10001;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+	}
+        location / {
+                proxy_redirect off;
+                proxy_pass http://localhost:5678;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $http_host;
+        }
+
+}
+```
+
 ### 查看硬件温度
 文件位置，x86_pkg_temp为CPU
 ```	
