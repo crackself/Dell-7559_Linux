@@ -97,42 +97,7 @@ server {
                 proxy_set_header Host $http_host;
 	}
 }
-[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
-[root@LFS ~]# reboot
-Connection to 104.36.64.184 closed by remote host.
-Connection to 104.36.64.184 closed.
-[wenzhi@insprion ~]$ ssh root@104.36.64.184 -p 27502
-root@104.36.64.184's password:
-Last login: Wed Mar  1 13:11:48 2023 from 120.235.228.48
-[root@LFS ~]# systemctl status nginx
-× nginx.service - A high performance web server and a reverse proxy server
-     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: disabled)
-     Active: failed (Result: exit-code) since Wed 2023-03-01 13:13:39 UTC; 26s ago
-    Process: 212 ExecStart=/usr/bin/nginx -g pid /run/nginx.pid; error_log stderr; (code=exited, status=1/FAILURE)
-        CPU: 37ms
-
-Mar 01 13:13:39 LFS systemd[1]: Starting A high performance web server and a reverse proxy server...
-Mar 01 13:13:39 LFS nginx[212]: 2023/03/01 13:13:39 [emerg] 212#212: unexpected end of file, expecting ";" or "}" in /etc/nginx/sites-enable>
-Mar 01 13:13:39 LFS systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
-Mar 01 13:13:39 LFS systemd[1]: nginx.service: Failed with result 'exit-code'.
-Mar 01 13:13:39 LFS systemd[1]: Failed to start A high performance web server and a reverse proxy server.
-[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/cloud.blfs.top.conf
-[root@LFS ~]# nano /etc/nginx/sites-enabled/blog.blfs.top.conf
-[root@LFS ~]# reboot
-[root@LFS ~]# Connection to 104.36.64.184 closed by remote host.
-Connection to 104.36.64.184 closed.
-[wenzhi@insprion ~]$
-[wenzhi@insprion ~]$ ssh root@104.36.64.184 -p 27502
-root@104.36.64.184's password:
-Last login: Wed Mar  1 13:13:58 2023 from 120.235.228.48
-[root@LFS ~]#
-[root@LFS ~]#
-[root@LFS ~]# cat /etc/nginx/sites-enabled/blog.blfs.top.conf
+/etc/nginx/sites-enabled/blog.blfs.top.conf
 server {
 	listen       443 ssl http2;
 	listen       [::]:443 ssl http2;
