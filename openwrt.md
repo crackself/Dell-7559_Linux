@@ -1,6 +1,6 @@
 ### OpenwrtImagerBuilder快速生成镜像 
 ```
-make image PACKAGES=" -firewall4 -dnsmasq -ppp -ppp-mod-pppoe -kmod-amazon-ena -kmod-amd-xgbe -kmod-bnx2 -kmod-button-hotplug -kmod-r8169 -kmod-tg3 -libustream-wolfssl -grub2-bios-setup firewall dnsmasq-full lsblk fdisk losetup resize2fs nano kmod-tcp-bbr kmod-ipt-tproxy wget-ssl wpad-openssl v2ray-geoip v2ray-geosite v2ray-core dockerd luci luci-i18n-base-zh-cn luci-theme-material luci-i18n-dockerman-zh-cn luci-i18n-opkg-zh-cn luci-i18n-nlbwmon-zh-cn" FILES="./files"
+make image PACKAGES=" -firewall4 -dnsmasq -ppp -ppp-mod-pppoe -kmod-amazon-ena -kmod-amd-xgbe -kmod-bnx2 -kmod-button-hotplug -kmod-r8169 -kmod-tg3 -libustream-wolfssl -grub2-bios-setup firewall dnsmasq-full lsblk fdisk losetup resize2fs nano kmod-tcp-bbr kmod-ipt-tproxy wget-ssl wpad-openssl v2ray-geoip v2ray-geosite v2ray-core v2ray-extra dockerd luci luci-i18n-base-zh-cn luci-theme-material luci-i18n-dockerman-zh-cn luci-i18n-opkg-zh-cn luci-i18n-nlbwmon-zh-cn" FILES="./files"
 ```
 #### openwrt uci 设置Dnsmasq KMS规则，自动激活windows/office
 ```
