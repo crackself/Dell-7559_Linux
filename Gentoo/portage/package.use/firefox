@@ -1,0 +1,8 @@
+www-client/firefox -wifi -pulseaudio
+
+# required by www-client/firefox-102.9.0::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.12.0-r1 postproc
+# required by www-client/firefox-102.9.0::gentoo[pgo]
+# required by firefox (argument)
+>=x11-base/xorg-server-21.1.7 xvfb

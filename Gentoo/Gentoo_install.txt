@@ -1,0 +1,250 @@
+Gentoo安裝步驟：
+
+準備磁盤並格式化分區爲ext4
+    mkfs.ext4 /dev/sda3
+
+解壓官方stage3基礎系統文件
+    tar vxpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+
+編輯/etc/etc/make.conf
+    # These settings were set by the catalyst build script that automatically
+    # built this stage.
+    # Please consult /usr/share/portage/config/make.conf.example for a more
+    # detailed example.
+    #COMMON_FLAGS="-O2 -pipe"
+    COMMON_FLAGS="-march=native -O3 -pipe -fPIC -fomit-frame-pointer"
+    CFLAGS="${COMMON_FLAGS}"
+    CXXFLAGS="${COMMON_FLAGS}"
+    FCFLAGS="${COMMON_FLAGS}"
+    FFLAGS="${COMMON_FLAGS}"
+
+    # NOTE: This stage was built with the bindist Use flag enabled
+
+    # This sets the language of build output to English.
+    # Please keep this setting intact when reporting bugs.
+    LC_MESSAGES=C
+
+    MAKEOPTS="-j4"
+    NINJAOPTS="-j4"
+
+    CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 ssse3"
+    CHOST="x86_64-pc-linux-gnu"
+
+    del="-busybox -bindist -handbook -ibus -scim -debug -doc -man -gtk-doc -telemetry -test -handbook -nls -accessibility -mdev -consolekit -netifrc -oss -gpm -vlc -ppp -cups -pulseaudio -kaccounts -semantic-desktop -kwallet"
+    kde="-gnome-shell -gnome -gnome-keyring -systemd -phonon -kwallet -kaccounts -semantic-desktop"
+    dwm="-gnome-shell -gnome -gnome-keyring -gtk -gtk2 -gtk3 -systemd -kde -qt4 -qt5"
+    gnome="-qt4 -qt5 -kde -systemd gtk gnome"
+    base="udev icu blkid acpi dbus policykit elogind"
+    add="bluetooth iwd wifi networkmanager usb alsa sudo git udisks"
+    wayland="wayland gles2 vulkan"
+    onlywayland="-X wayland gles2 vulkan"
+    media="aac encode ffmpeg flac jbig jpeg jpeg2k mp3 lame mp4 tiff gif png mpeg svg"
+    dev="fortran lto pgo graphite openmp"
+    USE="${del} ${base} ${kde} ${add} ${wayland} ${dev}"
+
+    VIDEO_CARDS="intel iris"
+    ALSA_CARDS="hda-intel"
+    INPUT_DEVICES="libinput"
+    GRUB_PLATFORMS="efi-64"
+    ACCEPT_LICENSE="*"
+    #ACCEPT_KEYWORDS="~amd64"
+
+
+    L10N="en-US zh-CN en zh"
+
+    FEATURES="-strict -assume-digests -sign"
+
+    # Python
+    # Enabling additional implementation in addition to the profile default
+    PYTHON_TARGETS=python3_11
+    # Replacing the profile default with specific implementation
+    PYTHON_SINGLE_TARGET=python3_11
+
+挂载系统必要环境，并进入Chroot环境 (https://zhuanlan.zhihu.com/p/122222365)
+    mount --types proc /proc /mnt/gentoo/proc
+    mount --rbind /sys /mnt/gentoo/sys
+    #mount --make-rslave /mnt/gentoo/sys (不使用systemd，所以注释掉)
+    mount --rbind /dev /mnt/gentoo/dev
+    #mount --make-rslave /mnt/gentoo/dev (不使用systemd，所以注释掉)
+
+    chroot /mnt/gentoo /bin/bash
+    env-update
+    source /etc/profile
+    export PS1="(chroot) ${PS1}"
+
+
+設定單個軟件包FLAG
+    /etc/portage/package.use/python
+        # Enabling additional implementation in addition to the profile default
+        */* PYTHON_TARGETS: python3_11
+        # Replacing the profile default with specific implementation
+        */* PYTHON_SINGLE_TARGET: -* python3_11
+
+    /etc/portage/package.use/firefox
+        www-client/firefox -wifi -pulseaudio
+
+添加DNS服務器
+    /etc/resolv.conf
+        search lan
+        nameserver 192.168.100.1
+
+更新系統源碼包
+    emerge-webrsync
+
+选一个合适的profile
+    eselect profile list    #选一个合适的profile予设值，或直接保留默認值
+    eselect profile select X
+
+設置从stage1到stage2重新編譯
+    nano /var/db/repos/gentoo/scripts/bootstrap.sh
+
+    [[ -z ${myLIBC}       ]] && myLIBC="$(portageq expand_virtual / virtual/libc)"
+    改为
+    [[ -z ${myLIBC}       ]] ; myLIBC="$(portageq expand_virtual / virtual/libc)"
+
+
+    export USE="-* bootstrap ${ALLOWED_USE} ${BOOTSTRAP_USE}"
+    改为
+    export USE="-* bootstrap ${ALLOWED_USE} ${BOOTSTRAP_USE} openmp"
+
+開始編譯stage1-2
+    ./bootstrap.sh
+
+退出当前chroot环境，再重新进入chroot环境
+    exit
+    chroot /mnt/gentoo /bin/bash
+    env-update                      #加载新的emerge包管理器和GCC编译器
+    source /etc/profile
+    export PS1="(chroot) ${PS1}"
+
+用新的gcc编译器重新编译安装各种编译器和lib库
+    emerge libtool
+    emerge binutils
+    emerge llvm
+    emerge libc
+    emerge glibc
+
+重新运行一次脚本检测
+    cd /var/db/repos/gentoo/scripts
+    ./bootstrap.sh
+
+重编译stage2-stage3
+    emerge -e @system
+
+    env-update
+    emerge -avuDN @system
+    emerge -e @world
+
+    emerge -avuDN @world
+
+配置最終系統
+
+設定locale
+    /etc/locale.gen
+        en_US ISO-8859-1
+        en_US.UTF-8 UTF-8
+        zh_CN GBK
+        zh_CN.UTF-8 UTF-8
+
+    locale-gen
+    eselect locale list
+    eselect locale set X
+
+設定主機名
+    /etc/conf.d/hostname
+        hostname="Gentoo"
+
+修改分區表
+    /etc/fstab
+
+修改root密碼
+    passwd root
+
+添加賬戶
+    useradd -m -G users,wheel,portage,usb,video,plugdev [your user name]
+    passwd [your user name]
+
+精簡安裝Plasma5桌面及組件
+    emerge -a kde-plasma/plasma-desktop powerdevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin konsole kwrite
+
+自編譯適應到精簡內核 （https://github.com/crackself/Dell-7559_Linux/tree/master/kernel_config）
+
+
+安裝基礎系統組件
+    emerge -a grub acpilight    # GRUB引導器、顯示屏背光調節
+    emerge -a eselect-python    # eselect python list組件
+
+掛載efi分區到/boot/efi
+    mount /dev/sda1 /boot/efi
+
+安裝UEFI-GRUB到硬盤分區
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Gentoo
+    生成配置文件（需先安裝好內核文件）
+    grub-mkconfig -o /boot/grub/grub.cfg
+
+
+蓝牙及音频支持
+    emerge -a bluez blueman pulseaudio
+
+安裝應用軟體
+    emerge -a firefox mpv gimp  #網絡瀏覽器、視頻播放、圖像編輯
+
+安裝字体
+   emerge -a media-fonts/noto-cjk media-fonts/noto-emoji
+
+配置第三方overlay支持 # https://wiki.gentoo.org/wiki/Eselect/Repository
+    emerge --ask app-eselect/eselect-repository
+
+啓用gentoo-zh或者其他overlay後安裝第三方軟件包
+    emerge -a fcitx-rime fcitx-qt fcitxgtk fcitx    # 第三方fcitx5
+
+第三方字體
+    emerge -a media-fonts/sarasa-gothic
+
+
+
+DW1560特别驱动
+    Wi-Fi    https://github.com/crackself/Dell-7559_Linux/LFS/DW1560
+    蓝牙      broadcom-bt-firmware
+
+添加自动启动服务
+    rc-update add iwd default           # 無線網絡
+    rc-update add bluetooth default     # 藍牙服務
+    rc-update add acpilight default     # 背光調節
+
+
+推薦字體
+    noto-fonts  noto-fonts-cjk  noto-fonts-emoji  sarasa-mono-sc-nerd（或sarasa-gothic）ubuntu-mono
+
+    优先字体配置
+        Noto Sans CJK TC
+
+其它
+   gentoo特別配置文件
+        /etc/portage
+
+    額外全局變量
+        /etc/porofile.d/extrapath.sh
+            COMMON_FLAGS="-march=native -O3 -pipe -fPIC -fomit-frame-pointer"
+            CFLAGS="${COMMON_FLAGS}"
+            CXXFLAGS="${COMMON_FLAGS}"
+            FCFLAGS="${COMMON_FLAGS}"
+            FFLAGS="${COMMON_FLAGS}"
+
+            MAKEOPTS="-j4"
+            NINJAOPTS="-j4"
+
+            CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sse s>
+            CHOST="x86_64-pc-linux-gnu"
+
+     fcitx全局配置
+        /etc/profile.d/i18n.sh
+            #export LANG=zh_CN.UTF-8
+            #export LANGUAGE=zh_CN:en_US
+            export INPUT_METHOD="fcitx"
+            export XMODIFIERS="@im=fcitx"
+            export GTK_IM_MODULE="fcitx"
+            export QT_IM_MODULE="fcitx"
+
+    自編譯內核内核pkcs8_key_parse加载报错
+        屏蔽模块自动加载 /usr/lib/modules-load.d/pkcs8.conf

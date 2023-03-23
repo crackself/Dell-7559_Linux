@@ -1,0 +1,22 @@
+# required by kde-frameworks/plasma-5.102.0-r3::gentoo
+# required by kde-plasma/milou-5.26.5::gentoo
+# required by kde-plasma/plasma-workspace-5.26.5-r1::gentoo
+# required by kde-plasma/plasma-desktop-5.26.5-r2::gentoo
+# required by kde-plasma/plasma-desktop (argument)
+>=kde-frameworks/kconfig-5.102.0 qml
+# required by kde-plasma/plasma-systemmonitor-5.26.5::gentoo
+# required by plasma-systemmonitor (argument)
+>=kde-frameworks/kitemmodels-5.102.0 qml
+# required by kde-frameworks/qqc2-desktop-style-5.102.0::gentoo
+# required by kde-plasma/plasma-desktop-5.26.5-r2::gentoo
+# required by kde-plasma/plasma-desktop (argument)
+>=kde-frameworks/sonnet-5.102.0 qml
+# required by kde-plasma/plasma-workspace-5.26.5-r1::gentoo
+# required by kde-plasma/plasma-desktop-5.26.5-r2::gentoo
+# required by kde-plasma/plasma-desktop (argument)
+>=kde-frameworks/prison-5.102.0 qml
+# required by media-sound/pulseaudio-daemon-16.1-r6::gentoo[alsa-plugin,alsa]
+# required by media-libs/libpulse-16.1-r1::gentoo
+# required by kde-plasma/plasma-pa-5.26.5::gentoo
+# required by plasma-pa (argument)
+>=media-plugins/alsa-plugins-1.2.7.1-r1 pulseaudio

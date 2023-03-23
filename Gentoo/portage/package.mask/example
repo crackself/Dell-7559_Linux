@@ -1,0 +1,9 @@
+# Mask beta versions greater than 1.97 of powertop since they have less features
+# >=sys-power/powertop-1.97
+
+# Prevent MySQL from being installed by masking the package (use MariaDB)
+# dev-db/mysql
+
+# Want to go without Java 7; mask JDK and JRE that use Java 7.
+# virtual/jdk:1.7
+# virtual/jre:1.7

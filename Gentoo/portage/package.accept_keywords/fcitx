@@ -1,0 +1,37 @@
+# enable ~amd64 for some package
+# emerge --ask --autounmask=y --autounmask-write fcitx-rime
+
+
+# fcitx5
+app-i18n/fcitx ~amd64
+app-text/enchant ~amd64
+dev-libs/libfmt ~amd64
+dev-libs/uthash ~amd64
+x11-libs/xcb-imdkit ~amd64
+
+# fcitx5-rime
+app-i18n/fcitx-rime ~amd64
+app-i18n/librime ~amd64
+dev-libs/leveldb ~amd64
+app-i18n/opencc ~amd64
+dev-libs/rapidjson ~amd64
+dev-libs/crc32c ~amd64
+dev-libs/utfcpp ~amd64
+dev-libs/capnproto ~amd64
+dev-cpp/yaml-cpp ~amd64
+dev-libs/darts ~amd64
+dev-libs/marisa ~amd64
+dev-cpp/tclap ~amd64
+app-i18n/rime-data ~amd64
+
+
+# fcitx5-qt
+app-i18n/fcitx-qt ~amd64
+
+# fcitx5-qt
+app-i18n/fcitx-gtk ~amd64
+gui-libs/gtk ~amd64
+media-libs/graphene ~amd64
+
+# fcitx-configtool
+app-i18n/fcitx-configtool ~amd64

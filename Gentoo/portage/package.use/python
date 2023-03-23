@@ -1,0 +1,4 @@
+# Enabling additional implementation in addition to the profile default
+*/* PYTHON_TARGETS: -* python3_11
+# Replacing the profile default with specific implementation
+*/* PYTHON_SINGLE_TARGET: -* python3_11
