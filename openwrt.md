@@ -24,7 +24,7 @@ uci commit dhcp
 ```
 ### uci 修改LAN地址
 ```
-set network.lan.ipaddr='192.168.100.1'
+uci set network.lan.ipaddr='192.168.100.1'
 commit network
 /etc/init.d/network reload
 ```
