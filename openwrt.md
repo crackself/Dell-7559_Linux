@@ -40,8 +40,23 @@ uci commit dockerd
 ```
 uci -q batch << EOI
 # 此处为uci命令
+add dhcp srvhost
+set	dhcp.@srvhost[-1].srv="_vlmcs._tcp.lan"
+set	dhcp.@srvhost[-1].target="OpenWrt.lan"
+set	dhcp.@srvhost[-1].port="1688"
+set	dhcp.@srvhost[-1].class="0"
+set	dhcp.@srvhost[-1].weight="100"
+commit dhcp
+
+set dockerd.firewall.extra_iptables_args='--match conntrack ! --ctstate RELATED,ESTABLISHED'
+commit dockerd
+
+set network.lan.ipaddr='192.168.100.1'
+commit network
 #
 EOI
+/etc/init.d/dnsmasq restart
+/etc/init.d/network reload
 ```
 ### Build Images on Gentoo host required:
 ```
