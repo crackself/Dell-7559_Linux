@@ -11,7 +11,7 @@
         
 #### 取消`kernel debug`选项:
     
-`sed -i '/select DEBUG_KERNEL/d' /usr/src/linux/init/Kconfig`
+`sed -i '/select DEBUG_KERNEL/d' init/Kconfig`
 
 #### 配置选项，使用Clang编译:
 `make menuconfig CC=clang HOSTCC=clang`
