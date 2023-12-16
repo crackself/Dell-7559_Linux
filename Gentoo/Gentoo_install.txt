@@ -165,7 +165,7 @@ Gentoo安裝步驟：
     passwd [your user name]
 
 精簡安裝Plasma5桌面及組件
-    emerge -a kde-plasma/plasma-desktop powerdevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin konsole kwrite
+    emerge -a kde-plasma/plasma-desktop powerdevil systemsettings plasma-systemmonitor plasma-nm plasma-pa kde-apps/dolphin konsole( or alacritty ) kwrite kde-plasma/discover kdeconnect
 
 自編譯適應到精簡內核 （https://github.com/crackself/Dell-7559_Linux/tree/master/kernel_config）
 
@@ -187,7 +187,7 @@ Gentoo安裝步驟：
     emerge -a bluez blueman pulseaudio
 
 安裝應用軟體
-    emerge -a firefox mpv gimp  #網絡瀏覽器、視頻播放、圖像編輯
+    emerge -a firefox chromium mpv gimp  #網絡瀏覽器、視頻播放、圖像編輯
 
 安裝字体
    emerge -a media-fonts/noto-cjk media-fonts/noto-emoji
