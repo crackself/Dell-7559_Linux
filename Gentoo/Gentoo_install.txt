@@ -12,7 +12,7 @@ Gentoo安裝步驟：
     # Please consult /usr/share/portage/config/make.conf.example for a more
     # detailed example.
     #COMMON_FLAGS="-O2 -pipe"
-    COMMON_FLAGS="-march=native -O3 -pipe -fPIC -fomit-frame-pointer"
+    COMMON_FLAGS="-march=native -O3 -pipe -fPIC -fomit-frame-pointer -Wno-dev"
     CFLAGS="${COMMON_FLAGS}"
     CXXFLAGS="${COMMON_FLAGS}"
     FCFLAGS="${COMMON_FLAGS}"
@@ -42,7 +42,7 @@ Gentoo安裝步驟：
     dev="fortran lto pgo graphite openmp"
     USE="${del} ${base} ${kde} ${add} ${wayland} ${dev}"
 
-    VIDEO_CARDS="intel iris"
+    VIDEO_CARDS="intel iris nvidia"
     ALSA_CARDS="hda-intel"
     INPUT_DEVICES="libinput"
     GRUB_PLATFORMS="efi-64"
@@ -52,13 +52,8 @@ Gentoo安裝步驟：
 
     L10N="en-US zh-CN en zh"
 
-    FEATURES="-strict -assume-digests -sign"
+    #FEATURES="-strict -assume-digests -sign"
 
-    # Python
-    # Enabling additional implementation in addition to the profile default
-    PYTHON_TARGETS=python3_11
-    # Replacing the profile default with specific implementation
-    PYTHON_SINGLE_TARGET=python3_11
 
 挂载系统必要环境，并进入Chroot环境 (https://zhuanlan.zhihu.com/p/122222365)
     mount --types proc /proc /mnt/gentoo/proc
@@ -76,7 +71,7 @@ Gentoo安裝步驟：
 設定單個軟件包FLAG
     /etc/portage/package.use/python
         # Enabling additional implementation in addition to the profile default
-        */* PYTHON_TARGETS: python3_11
+        */* PYTHON_TARGETS: python3_12
         # Replacing the profile default with specific implementation
         */* PYTHON_SINGLE_TARGET: -* python3_11
 
@@ -86,7 +81,7 @@ Gentoo安裝步驟：
 添加DNS服務器
     /etc/resolv.conf
         search lan
-        nameserver 192.168.100.1
+        nameserver 8.8.8.8
 
 更新系統源碼包
     emerge-webrsync
@@ -156,6 +151,12 @@ Gentoo安裝步驟：
 
 修改分區表
     /etc/fstab
+    # <fs>			<mountpoint>	<type>		<opts>		<dump> <pass>
+    #LABEL=boot		/boot		ext4		defaults	1 2
+    #UUID=58e72203-57d1-4497-81ad-97655bd56494		/		xfs		defaults		0 1
+    #LABEL=swap		none		swap		sw		0 0
+    #/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
+    /dev/sda3		/		ext4		defaults	0 1
 
 修改root密碼
     passwd root
@@ -189,11 +190,24 @@ Gentoo安裝步驟：
 安裝應用軟體
     emerge -a firefox chromium mpv gimp  #網絡瀏覽器、視頻播放、圖像編輯
 
+安装SDDM登录管理器 (plasma 系统设置SDDM emerge --ask kde-plasma/sddm-kcm)
+    emerge --ask x11-misc/sddm
+    usermod -a -G video sddm
+
+    /etc/conf.d/display-manager
+        CHECKVT=7
+        DISPLAYMANAGER="sddm"
+rc-service display-manager start
+
 安裝字体
-   emerge -a media-fonts/noto-cjk media-fonts/noto-emoji
+   emerge -a media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/fontawesome
 
 配置第三方overlay支持 # https://wiki.gentoo.org/wiki/Eselect/Repository
     emerge --ask app-eselect/eselect-repository
+    eselect repository list
+    eselect repository enable gentoo-zh
+    emaint sync -r gentoo-zh
+    emerge --ask --oneshot sys-apps/portage
 
 啓用gentoo-zh或者其他overlay後安裝第三方軟件包
     emerge -a fcitx-rime fcitx-qt fcitxgtk fcitx    # 第三方fcitx5
@@ -201,10 +215,9 @@ Gentoo安裝步驟：
 第三方字體
     emerge -a media-fonts/sarasa-gothic
 
-
-
 DW1560特别驱动
     Wi-Fi    https://github.com/crackself/Dell-7559_Linux/LFS/DW1560
+             broadcom-sta
     蓝牙      broadcom-bt-firmware
 
 添加自动启动服务
@@ -221,7 +234,15 @@ DW1560特别驱动
 
 其它
    gentoo特別配置文件
-        /etc/portage
+    单个软件设置USE
+        /etc/portage/package.use
+        /etc/portage/package.use/mpv
+            media-video/mpv bluray javascript
+
+    单屏蔽某个软件
+        /etc/portage/package.mask    屏蔽
+            /etc/portage/package.mask/chromium
+                www-client/chromium
 
     額外全局變量
         /etc/porofile.d/extrapath.sh
@@ -246,5 +267,25 @@ DW1560特别驱动
             export GTK_IM_MODULE="fcitx"
             export QT_IM_MODULE="fcitx"
 
+    Wayland下Fcitx设置
+        /etc/profile.d/i18n.sh
+            #export LANG=zh_CN.UTF-8
+            #export LANGUAGE=zh_CN:en_US
+            export INPUT_METHOD="fcitx"
+            export XMODIFIERS="@im=fcitx"
+            export GTK_IM_MODULE="fcitx"
+            export QT_IM_MODULE="fcitx"
+
+Wayland下chromium启用fcitx5输入法
+        /etc/chromium/default
+            # Default settings for chromium. This file is sourced by /bin/bash from
+            # the chromium launcher.
+
+            # Options to pass to chromium.
+            #CHROMIUM_FLAGS=""
+            CHROMIUM_FLAGS="--enable-features=UseOzonePlatform
+            --ozone-platform=wayland
+            --enable-wayland-ime
+            "
     自編譯內核内核pkcs8_key_parse加载报错
-        屏蔽模块自动加载 /usr/lib/modules-load.d/pkcs8.conf
+        屏蔽模块自动加载 /usr/lib/modules-load.d/{pkcs8.conf,ddcutil.conf}
