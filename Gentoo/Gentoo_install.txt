@@ -199,9 +199,11 @@ Gentoo安裝步驟：
         DISPLAYMANAGER="sddm"
 rc-service display-manager start
 
-安裝字体
-   emerge -a media-fonts/noto-cjk media-fonts/noto-emoji media-fonts/fontawesome
+安裝字体(joypixels支持emoji表情字符)
+   emerge -a media-fonts/noto-cjk media-fonts/joypixels media-fonts/fontawesome
 
+2024年1月以后gentoo官方已支持fcitx5
+```
 配置第三方overlay支持 # https://wiki.gentoo.org/wiki/Eselect/Repository
     emerge --ask app-eselect/eselect-repository
     eselect repository list
@@ -211,6 +213,7 @@ rc-service display-manager start
 
 啓用gentoo-zh或者其他overlay後安裝第三方軟件包
     emerge -a fcitx-rime fcitx-qt fcitxgtk fcitx    # 第三方fcitx5
+```
 
 第三方字體
     emerge -a media-fonts/sarasa-gothic
@@ -227,7 +230,7 @@ DW1560特别驱动
 
 
 推薦字體
-    noto-fonts  noto-fonts-cjk  noto-fonts-emoji  sarasa-mono-sc-nerd（或sarasa-gothic）ubuntu-mono
+    noto-fonts  noto-fonts-cjk joypixels sarasa-mono-sc-nerd（或sarasa-gothic）ubuntu-mono
 
     优先字体配置
         Noto Sans CJK TC
