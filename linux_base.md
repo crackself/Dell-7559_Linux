@@ -1,3 +1,15 @@
+### 阻止docker自动添加iptables规则
+```
+添加docker 默认配置后重启系统：
+/etc/docker/daemon.json
+{
+  "ip": "127.0.0.1",
+  "ip-forward": false,
+  "ip-masq": false,
+  "iptables": false,
+  "ip6tables": false
+}
+```
 ### passwd + openssl生成密码
 ```
 printf "用户名:$(openssl passwd 密码)\n" >> /etc/nginx/htpasswd
