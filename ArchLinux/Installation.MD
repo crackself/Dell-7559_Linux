@@ -6,8 +6,7 @@ mount /dev/sda3 /mnt
 ```
 ### 安装基本系统：
 ```
-pacstrap -i /mnt base xorg-server xorg-xinit grub efibootmgr sudo networkmanager
-sddm firefox alacritty plasma-desktop plasma-wayland-session powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa dolphin kwrite
+pacstrap -i /mnt base grub efibootmgr sudo networkmanager sddm firefox alacritty plasma-desktop powerdevil bluedevil systemsettings plasma-systemmonitor plasma-nm plasma-pa dolphin kwrite
 ```
 ### 切换到chroot
 `arch-chroot /mnt`
@@ -56,12 +55,10 @@ EOF
 ```
 nano /etc/locale.gen
 
-zh_CN.gb18030
-zh_CN.gb2312
-zh_CN.gbk
-zh_CN.utf8
-zh_HK.utf8
-zh_TW.utf8
+en_US ISO-8859-1
+en_US.UTF-8 UTF-8
+zh_CN GBK
+zh_CN.UTF-8 UTF-8
 
 locale-gen
 nano /etc/locale.conf
