@@ -55,10 +55,11 @@ EOF
 ```
 nano /etc/locale.gen
 
-en_US ISO-8859-1
 en_US.UTF-8 UTF-8
 zh_CN GBK
 zh_CN.UTF-8 UTF-8
+zh_TW.UTF-8 UTF-8
+zh_HK.UTF-8 UTF-8
 
 locale-gen
 nano /etc/locale.conf
