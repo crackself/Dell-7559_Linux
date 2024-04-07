@@ -179,7 +179,7 @@ EOF
 `grub efibootmgr`
 ### Plasma5桌面(精简安装)
 ```
-plasma-desktop plasma-wayland-session systemsettings plasma-systemmonitor powerdevil bluedevil plasma-nm plasma-pa dolphin kwrite
+plasma-desktop systemsettings plasma-systemmonitor powerdevil bluedevil plasma-nm plasma-pa dolphin kwrite
 ```
 ### 蓝牙音频支持
 `pulseaudio-bluetooth pulseaudio-alsa bluez-utils`
