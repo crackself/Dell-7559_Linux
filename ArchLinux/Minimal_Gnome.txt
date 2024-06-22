@@ -1,0 +1,2 @@
+pacman -S gnome-shell gnome-shell-extensions gnome-tweaks gnome-system-monitor gtop gnome-menus nemo gedit gedit-plugins file-roller evince gnome-control-center gdm
+grub efibootmgr linux alacritty networkmanager firefox mpv
