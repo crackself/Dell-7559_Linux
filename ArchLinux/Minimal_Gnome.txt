@@ -1,2 +1,9 @@
 pacman -S gnome-shell gnome-shell-extensions gnome-tweaks gnome-system-monitor gtop gnome-menus nemo gedit gedit-plugins file-roller evince gnome-control-center gdm
 grub efibootmgr linux alacritty networkmanager firefox mpv
+
+
+Titlebar button order:
+gsettings set org.gnome.desktop.wm.preferences button-layout ':minimize,maximize,close'
+
+other reference:
+https://wiki.archlinux.org/title/GNOME#Advanced_settings
