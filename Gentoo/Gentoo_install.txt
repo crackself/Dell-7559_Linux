@@ -172,7 +172,7 @@ Gentoo安裝步驟：
 
 
 安裝基礎系統組件
-    emerge -a grub acpilight    # GRUB引導器、顯示屏背光調節
+    emerge -a grub acpilight    # GRUB引導器、顯示屏背光調節(acpilit not need in plasma6)
     emerge -a eselect-python    # eselect python list組件
 
 掛載efi分區到/boot/efi
