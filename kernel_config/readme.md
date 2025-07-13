@@ -1,8 +1,10 @@
-#### 安装内核到
-5.14.9 以上均默认去除`early print`
-*-vm 配置文件开启qemu
-6.15.6 以上均默認啓用AX210網卡，需要固件支持，need-firmware.tar.xz 需解壓到/lib/firmware確保生效
-其它为缺省配置
+### 版本說明
+- 5.14.9 以上均默认去除`early print`
+- *-vm 配置文件开启qemu
+- 6.15.6 以上均默認啓用AX210網卡，需要固件支持，need-firmware.tar.xz 需解壓到/lib/firmware確保生效
+`CONFIG_EXTRA_FIRMWARE="regulatory.db regulatory.db.p7s intel/ibt-0041-0041.sfi intel/ibt-0041-0041.ddc iwlwifi-ty-a0-gf-a0-89.ucode iwlwifi-ty-a0-gf-a0.pnvm i915/skl_dmc_ver1_27.bin"`
+- 其它为缺省配置
+
 #### 安装内核到`/usr/src/`:
     
 `tar -xf linux-5.13.2.tar.xz /usr/src/linux`
