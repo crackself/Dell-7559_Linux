@@ -1,6 +1,7 @@
 #### 安装内核到
 5.14.9 以上均默认去除`early print`
 *-vm 配置文件开启qemu
+6.15.6 以上均默認啓用AX210網卡，需要固件支持，need-firmware.tar.xz 需解壓到/lib/firmware確保生效
 其它为缺省配置
 #### 安装内核到`/usr/src/`:
     
@@ -15,14 +16,13 @@
 
 #### 配置选项，使用Clang编译:
 `make menuconfig CC=clang HOSTCC=clang`
-        
-    
+
 `make -j4 CC=clang HOSTCC=clang`
 
 #### 手动安装引导文件到`/boot`
 ```
-cp -iv arch/x86/boot/bzImage /boot/vmlinuz-5.13.2
-cp -iv System.map /boot/System.map-5.13.2`
+cp -iv arch/x86/boot/bzImage /boot/vmlinuz
+cp -iv System.map /boot/System.map
 ```
 
 #### 手动安装kernek modules 到
